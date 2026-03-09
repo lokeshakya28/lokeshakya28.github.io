@@ -8,15 +8,56 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0e0e0e;color:#fff;line-height:1.6}
 
-section{padding:100px 8%}
+html{scroll-behavior:smooth}
+
+body{
+font-family:'Inter',sans-serif;
+background:#0e0e0e;
+color:#fff;
+line-height:1.6;
+overflow-x:hidden
+}
+
+/* loader */
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:#0e0e0e;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-size:28px;
+font-weight:700;
+letter-spacing:3px
+}
+
+/* cursor */
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #4ade80;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+transition:transform .1s ease;
+z-index:999
+}
+
+section{padding:110px 8%}
 
 h1,h2,h3{font-family:'Space Grotesk',sans-serif}
 
-.section-label{color:#888;text-transform:uppercase;font-size:14px;margin-bottom:10px}
-.section-title{font-size:40px;margin-bottom:10px}
-.section-desc{color:#aaa;margin-bottom:40px;max-width:600px}
+.section-label{color:#777;text-transform:uppercase;font-size:13px;margin-bottom:10px;letter-spacing:2px}
+.section-title{font-size:42px;margin-bottom:12px}
+.section-desc{color:#aaa;margin-bottom:40px;max-width:650px}
+
+/* nav */
 
 nav{
 position:fixed;
@@ -27,38 +68,78 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 8%;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
-z-index:999
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
+z-index:1000
 }
 
-.logo{font-weight:700}
+.logo{font-weight:700;font-size:18px}
 
 .nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{color:#fff;text-decoration:none;font-size:14px}
+
+.nav-links a{
+color:#fff;
+text-decoration:none;
+font-size:14px;
+position:relative
+}
+
+.nav-links a::after{
+content:"";
+position:absolute;
+width:0%;
+height:2px;
+bottom:-5px;
+left:0;
+background:#4ade80;
+transition:.3s
+}
+
+.nav-links a:hover::after{width:100%}
 
 .hamburger{display:none;background:none;border:none;cursor:pointer}
 .hamburger span{display:block;width:25px;height:3px;background:white;margin:5px 0}
+
+/* hero */
 
 .hero{
 height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:center;
-padding:0 8%
+text-align:center
 }
 
-.hero-content{max-width:700px}
+.hero-content{max-width:720px}
+
 .hero-tag{color:#888;margin-bottom:10px}
-.hero h1{font-size:60px;margin-bottom:20px}
+
+.hero h1{font-size:64px;margin-bottom:20px}
+
 .highlight{color:#4ade80}
 
 .hero-buttons{margin-top:30px;display:flex;gap:20px;justify-content:center}
 
-.btn{padding:12px 24px;border-radius:6px;text-decoration:none;font-size:14px}
+.btn{
+padding:13px 26px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+transition:.3s
+}
+
 .btn-primary{background:#4ade80;color:#000}
-.btn-outline{border:1px solid #4ade80;color:#4ade80}
+
+.btn-primary:hover{transform:translateY(-3px)}
+
+.btn-outline{
+border:1px solid #4ade80;
+color:#4ade80
+}
+
+.btn-outline:hover{background:#4ade80;color:#000}
+
+/* portfolio */
 
 .portfolio-grid{
 display:grid;
@@ -66,8 +147,21 @@ grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px
 }
 
-.project-card{background:#151515;border-radius:12px;overflow:hidden}
+.project-card{
+background:#151515;
+border-radius:14px;
+overflow:hidden;
+transition:.4s;
+box-shadow:0 10px 40px rgba(0,0,0,0.4)
+}
+
+.project-card:hover{
+transform:translateY(-8px) scale(1.02)
+}
+
 .project-info{padding:20px}
+
+/* services */
 
 .services-grid{
 display:grid;
@@ -78,16 +172,104 @@ gap:25px
 .service-card{
 background:#151515;
 padding:30px;
-border-radius:12px;
+border-radius:14px;
 text-align:center;
-transition:0.3s
+transition:.3s
 }
 
-.service-card:hover{transform:translateY(-6px)}
+.service-card:hover{
+transform:translateY(-8px);
+background:#1c1c1c
+}
 
-.service-icon{font-size:30px;margin-bottom:10px}
+.service-icon{font-size:32px;margin-bottom:10px}
 
-.reel-container{max-width:800px;margin:auto}
+/* reel */
+
+.reel-container{max-width:850px;margin:auto}
+
+video{border-radius:14px}
+
+/* video grid */
+
+/* GRAPHICS */
+
+.graphics-filter{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:30px
+}
+
+.filter-btn{
+padding:8px 16px;
+border:none;
+background:#1a1a1a;
+color:#fff;
+border-radius:20px;
+cursor:pointer;
+transition:.3s
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+background:#4ade80;
+color:#000
+}
+
+.graphics-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-bottom:60px
+}
+
+.graphic-item{
+overflow:hidden;
+border-radius:14px;
+position:relative;
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+cursor:pointer
+}
+
+.graphic-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s
+}
+
+.graphic-item:hover img{
+transform:scale(1.1)
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:rgba(0,0,0,.9);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+pointer-events:none;
+transition:.3s;
+z-index:2000
+}
+
+.lightbox img{
+max-width:90%;
+max-height:85vh;
+border-radius:10px
+}
+
+.lightbox.active{
+opacity:1;
+pointer-events:auto
+}
 
 /* VIDEO GRID */
 
@@ -99,35 +281,49 @@ margin-top:40px
 }
 
 .video-item{
-border-radius:12px;
+border-radius:14px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
-transition:0.3s
+transition:.3s;
+box-shadow:0 10px 40px rgba(0,0,0,0.5)
 }
 
-.video-item:hover{transform:scale(1.03)}
+.video-item:hover{transform:scale(1.04)}
 
 .video-item iframe{width:100%;height:220px;border:none}
+
 .video-item.short iframe{height:420px}
+
+/* about */
 
 .about-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:40px;
+gap:50px;
 align-items:center
 }
 
-.about-image{width:100%;border-radius:12px}
+.about-image{width:100%;border-radius:14px}
 
-.stats{display:flex;gap:30px;margin:20px 0}
+.stats{display:flex;gap:40px;margin:25px 0}
 
-.stat-num{font-size:28px;font-weight:700;display:block}
-.stat-label{color:#aaa;font-size:14px}
+.stat-num{font-size:30px;font-weight:700;display:block}
+.stat-label{color:#aaa;font-size:13px}
 
-.tools{margin-top:20px}
+.tools{margin-top:15px}
+
+/* contact */
 
 .contact-links{display:flex;flex-direction:column;gap:15px}
-.contact-links a{color:#4ade80;text-decoration:none}
+
+.contact-links a{
+color:#4ade80;
+text-decoration:none;
+transition:.3s
+}
+
+.contact-links a:hover{transform:translateX(6px)}
+
+/* footer */
 
 footer{
 text-align:center;
@@ -136,15 +332,24 @@ color:#777;
 border-top:1px solid #222
 }
 
-/* reveal animation */
-.reveal{opacity:0;transform:translateY(40px);transition:1s}
-.reveal.active{opacity:1;transform:translateY(0)}
+/* reveal */
+
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0)
+}
 
 /* responsive */
 
 @media(max-width:768px){
 
-.hero h1{font-size:40px}
+.hero h1{font-size:42px}
 
 .nav-links{
 position:absolute;
@@ -164,10 +369,14 @@ display:none
 .about-grid{grid-template-columns:1fr}
 
 }
+
 </style>
 </head>
 
 <body>
+
+<div id="loader">LOKESH</div>
+<div class="cursor" id="cursor"></div>
 
 <nav>
 <div class="logo">Lokesh Shakya</div>
@@ -216,6 +425,49 @@ display:none
 </div>
 </section>
 
+<!-- GRAPHICS PORTFOLIO -->
+<section id="graphics">
+<p class="section-label reveal">Graphic Design</p>
+<h2 class="section-title reveal">Featured Graphic Work</h2>
+<p class="section-desc reveal">Posters, thumbnails, branding and social media creatives.</p>
+
+<div class="graphics-filter reveal">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="thumb">Thumbnails</button>
+<button class="filter-btn" data-filter="poster">Posters</button>
+<button class="filter-btn" data-filter="branding">Branding</button>
+</div>
+
+<div class="graphics-grid reveal" id="graphicsGrid">
+
+<div class="graphic-item thumb">
+<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200" alt="thumbnail">
+</div>
+
+<div class="graphic-item thumb">
+<img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200" alt="thumbnail">
+</div>
+
+<div class="graphic-item poster">
+<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200" alt="poster">
+</div>
+
+<div class="graphic-item poster">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200" alt="poster">
+</div>
+
+<div class="graphic-item branding">
+<img src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a?q=80&w=1200" alt="branding">
+</div>
+
+<div class="graphic-item branding">
+<img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1200" alt="branding">
+</div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
 <section id="services">
 <p class="section-label reveal">What I Do</p>
 <h2 class="section-title reveal">Services</h2>
@@ -312,8 +564,8 @@ display:none
 <h2 class="section-title reveal">Contact Me</h2>
 
 <div class="contact-links reveal">
-<a href="https://instagram.com/mr.lokesh_28">Instagram: @mr.lokesh_28</a>
-<a href="https://instagram.com/pixelsbylokesh">Instagram: @pixelsbylokesh</a>
+<a href="https://instagram.com/mr.lokesh_28" target="_blank">Instagram: @mr.lokesh_28</a>
+<a href="https://instagram.com/pixelsbylokesh" target="_blank">Instagram: @pixelsbylokesh</a>
 <a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
 </div>
 </section>
@@ -324,11 +576,27 @@ display:none
 
 <script>
 
+const loader=document.getElementById('loader')
+
+window.addEventListener('load',()=>{
+setTimeout(()=>{
+loader.style.opacity='0'
+loader.style.pointerEvents='none'
+},800)
+})
+
 const hamburger=document.getElementById('hamburger')
 const navLinks=document.getElementById('navLinks')
 
 hamburger.addEventListener('click',()=>{
 navLinks.classList.toggle('open')
+})
+
+const cursor=document.getElementById('cursor')
+
+document.addEventListener('mousemove',e=>{
+cursor.style.left=e.clientX+'px'
+cursor.style.top=e.clientY+'px'
 })
 
 const reveals=document.querySelectorAll('.reveal')
@@ -345,8 +613,53 @@ el.classList.add('active')
 }
 
 window.addEventListener('scroll',revealOnScroll)
-
 revealOnScroll()
+
+
+
+/* GRAPHICS FILTER */
+
+const filterButtons=document.querySelectorAll('.filter-btn')
+const graphicItems=document.querySelectorAll('.graphic-item')
+
+filterButtons.forEach(btn=>{
+btn.addEventListener('click',()=>{
+
+filterButtons.forEach(b=>b.classList.remove('active'))
+btn.classList.add('active')
+
+const filter=btn.dataset.filter
+
+graphicItems.forEach(item=>{
+if(filter==='all'||item.classList.contains(filter)){
+item.style.display='block'
+}else{
+item.style.display='none'
+}
+})
+
+})
+})
+
+/* LIGHTBOX */
+
+const lightbox=document.createElement('div')
+lightbox.className='lightbox'
+document.body.appendChild(lightbox)
+
+const lightboxImg=document.createElement('img')
+lightbox.appendChild(lightboxImg)
+
+document.querySelectorAll('.graphic-item img').forEach(img=>{
+img.addEventListener('click',()=>{
+lightbox.classList.add('active')
+lightboxImg.src=img.src
+})
+})
+
+lightbox.addEventListener('click',()=>{
+lightbox.classList.remove('active')
+})
 
 </script>
 
