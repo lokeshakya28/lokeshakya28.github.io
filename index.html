@@ -1,292 +1,81 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lokesh Shakya — Creative Portfolio</title>
+<title>Video Editor Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-
-/* RESET */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-font-family:'Inter',sans-serif;
-background:#0b0b0b;
-color:#fff;
+background:#050505;
+color:white;
 overflow-x:hidden;
 }
 
-/* PARTICLES */
-
-#particles{
+#particles-js{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-z-index:-2;
+z-index:-1;
 }
 
-/* LOADER */
-
-#loader{
-position:fixed;
-width:100%;
-height:100vh;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-font-size:42px;
-font-weight:800;
-letter-spacing:6px;
-font-family:'Space Grotesk',sans-serif;
-}
-
-/* CURSOR */
-
-.cursor{
-width:18px;
-height:18px;
-border:2px solid #4ade80;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:999;
-}
-
-/* CURSOR TRAIL */
-
-.cursor-dot{
-width:5px;
-height:5px;
-background:#00ff9c;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-box-shadow:0 0 8px #00ff9c;
-z-index:999;
-}
-
-/* NAVBAR */
+/* NAV */
 
 nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
 display:flex;
 justify-content:space-between;
+padding:25px 10%;
 align-items:center;
-padding:20px 8%;
-background:rgba(0,0,0,.45);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,0.06);
-z-index:1000;
 }
 
 .logo{
-font-weight:700;
-font-family:'Space Grotesk',sans-serif;
+color:#00ffae;
+font-size:22px;
+font-weight:600;
 }
 
-.nav-links{
-display:flex;
-gap:35px;
-list-style:none;
-}
-
-.nav-links a{
-color:#ddd;
-text-decoration:none;
-font-size:14px;
-position:relative;
-transition:0.3s;
-}
-
-.nav-links a::after{
-content:"";
-position:absolute;
-bottom:-6px;
-left:0;
-width:0%;
-height:2px;
-background:#4ade80;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:#4ade80;
-}
-
-.nav-links a:hover::after{
-width:100%;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:radial-gradient(circle at center,#1a1a1a,#000);
-}
-
-.hero h1{
-font-size:72px;
-margin-bottom:20px;
-}
-
-.highlight{
-color:#4ade80;
-text-shadow:
-0 0 8px rgba(74,222,128,0.6),
-0 0 18px rgba(74,222,128,0.4);
-}
-
-.hero-buttons{
-margin-top:30px;
-display:flex;
-gap:20px;
-justify-content:center;
-}
-
-.btn{
-padding:14px 28px;
-border-radius:8px;
-text-decoration:none;
-font-size:14px;
-}
-
-.btn-primary{
-background:#4ade80;
-color:#000;
-}
-
-.btn-outline{
-border:1px solid #4ade80;
-color:#4ade80;
-}
-
-/* SECTIONS */
+/* SECTION */
 
 section{
-padding:120px 8%;
+padding:60px 10%;
 }
 
-.section-label{
-color:#777;
-text-transform:uppercase;
-font-size:13px;
-letter-spacing:2px;
-margin-bottom:10px;
-}
-
-.section-title{
-font-size:44px;
-margin-bottom:30px;
-font-family:'Space Grotesk',sans-serif;
-}
-
-/* GRAPHICS */
-
-.graphics-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
-
-.graphic-item{
-overflow:hidden;
-border-radius:16px;
-box-shadow:0 10px 40px rgba(0,0,0,.5);
-}
-
-.graphic-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.4s;
-}
-
-.graphic-item:hover img{
-transform:scale(1.08);
-}
-
-/* PORTFOLIO TAPE */
-
-.tape-wrapper{
-width:100%;
-overflow:hidden;
-margin:60px 0;
-}
-
-.tape-track{
-white-space:nowrap;
-background:#fff;
-color:#000;
-font-weight:700;
-letter-spacing:3px;
-padding:14px 0;
-
-clip-path:polygon(0 20%,100% 0,100% 80%,0 100%);
-
-animation:tapeScroll 18s linear infinite;
-}
-
-.tape-track span{
-display:inline-block;
-padding-left:100%;
-}
-
-@keyframes tapeScroll{
-from{transform:translateX(0)}
-to{transform:translateX(-100%)}
-}
-
-/* VIDEO */
-
-.video-category{
-margin-top:70px;
-}
-
-.video-category h3{
-font-size:26px;
-margin-bottom:20px;
-color:#4ade80;
-}
+/* VIDEO GRID */
 
 .video-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:25px;
+margin-top:30px;
 }
 
 .video-card{
 background:#111;
-border-radius:16px;
+border-radius:14px;
 overflow:hidden;
-box-shadow:0 10px 40px rgba(0,0,0,.6);
+transition:0.3s;
+box-shadow:0 0 15px rgba(0,255,170,0.1);
+}
+
+.video-card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 20px rgba(0,255,170,0.3);
 }
 
 .video-card iframe{
@@ -295,452 +84,159 @@ height:220px;
 border:none;
 }
 
-.video-info{
-padding:15px;
+.video-card p{
+padding:12px;
+font-size:14px;
+color:#bbb;
+}
+
+/* TITLES */
+
+h2{
+color:#00ffae;
+margin-top:40px;
 }
 
 /* ABOUT */
 
-.about-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-margin-top:40px;
+.about-wrapper{
+display:flex;
+justify-content:center;
+margin-top:50px;
 }
 
 .about-card{
-padding:28px;
-border-radius:18px;
+max-width:700px;
+padding:35px;
+
 background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.12);
-backdrop-filter:blur(20px);
-transition:.4s;
-min-height:160px;
-display:flex;
-flex-direction:column;
-justify-content:center;
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,0.15);
+
+border-radius:20px;
+
+box-shadow:0 8px 40px rgba(0,0,0,0.4);
+text-align:center;
 }
 
-.about-card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,255,140,0.2);
+.about-card h2{
+margin-bottom:15px;
 }
 
-/* CONTACT */
-
-.contact-links{
-display:flex;
-flex-direction:column;
-gap:15px;
-margin-top:20px;
+.about-card p{
+color:#ccc;
+line-height:1.6;
 }
 
-.contact-links a{
-color:#4ade80;
-text-decoration:none;
-font-size:16px;
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+color:#888;
+font-size:14px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
-<div id="loader">LOKESH SHAKYA</div>
-<div class="cursor" id="cursor"></div>
+<div id="particles-js"></div>
 
 <nav>
-
-<div class="logo">Lokesh Shakya</div>
-
-<ul class="nav-links">
-<li><a href="#graphics">Graphics</a></li>
-<li><a href="#videos">Videos</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
+<div class="logo">UGC</div>
 </nav>
 
-<section class="hero">
+<section>
 
-<div>
+<h2>UGC</h2>
 
-<h1>
-Creative <span class="highlight">Visual Editor</span>
-</h1>
+<div class="video-grid">
 
-<p>I design graphics and craft engaging videos for creators & brands.</p>
+<!-- FIRST VIDEO (NOW SWAPPED) -->
 
-<div class="hero-buttons">
-<a href="#videos" class="btn btn-primary">View Work</a>
-<a href="#contact" class="btn btn-outline">Hire Me</a>
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/VIDEO_ID_2"></iframe>
+<p>UGC</p>
+</div>
+
+<!-- SECOND VIDEO -->
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/VIDEO_ID_1"></iframe>
+<p>Marine Fitness 2.0</p>
 </div>
 
 </div>
 
-</section>
-
-<section id="graphics">
-
-<p class="section-label">Graphic Design</p>
-<h2 class="section-title">My Design Work</h2>
-
-<div class="graphics-grid">
-
-<div class="graphic-item">
-<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0">
-</div>
-
-<div class="graphic-item">
-<img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb">
-</div>
-
-<div class="graphic-item">
-<img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb">
-</div>
-
-<div class="graphic-item">
-<img src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a">
-</div>
-
-</div>
-
-<div class="tape-wrapper">
-
-<div class="tape-track">
-
-<span>
-
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS • 
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS • 
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS • 
-
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="videos">
-
-<h2 class="section-title">Video Projects</h2>
-
-<div class="video-category">
-
-<h3>Behind The Scene Edit</h3>
+<h2>Other Edits</h2>
 
 <div class="video-grid">
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/FUHYCIQrm2s"></iframe>
-<div class="video-info">Behind The Scene Edit</div>
-</div>
-
-</div>
-
-</div>
-
-<div class="video-category">
-
-<h3>UGC</h3>
-
-<div class="video-grid">
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/OUkAhlsFpuo"></iframe>
-<div class="video-info">UGC</div>
+<iframe src="https://www.youtube.com/embed/VIDEO_ID_3"></iframe>
+<p>Gym Video</p>
 </div>
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/Eqx0fdQ47f0"></iframe>
-<div class="video-info">UGC</div>
-</div>
-
-</div>
-
-</div>
-
-<div class="video-category">
-
-<h3>Other Edits</h3>
-
-<div class="video-grid">
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/biMbmg67aZM"></iframe>
-<div class="video-info">Gym Video</div>
+<iframe src="https://www.youtube.com/embed/VIDEO_ID_4"></iframe>
+<p>Watch Video</p>
 </div>
 
 <div class="video-card">
-<iframe src="https://www.youtube.com/embed/AkIBZf1Cvns"></iframe>
-<div class="video-info">Watch Video</div>
-</div>
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/EOoVCErJVNU"></iframe>
-<div class="video-info">Car Video</div>
-</div>
-
+<iframe src="https://www.youtube.com/embed/VIDEO_ID_5"></iframe>
+<p>Watch Ad Promotional Edit</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="about">
-
-<h2 class="section-title">About Me</h2>
-
-<p>Hi I'm <b>Lokesh Shakya</b> — a Delhi-based Video Editor & Graphic Designer creating modern social media content.</p>
-
-<div class="about-grid">
+<section class="about-wrapper">
 
 <div class="about-card">
-<h3>Experience</h3>
-<p>Freelance fresher working on creative projects.</p>
-</div>
 
-<div class="about-card">
-<h3>Software</h3>
-<p>Premiere Pro • After Effects • Photoshop • Illustrator</p>
-</div>
+<h2>About Me</h2>
 
-<div class="about-card">
-<h3>Clients</h3>
-<p>Amaryllis • Bonjour • Marine Fitness</p>
-</div>
+<p>
 
-<div class="about-card">
-<h3>Specialty</h3>
-<p>UGC Reels • Fast Sync • Wedding Videos</p>
-</div>
+I'm a passionate video editor specializing in UGC ads,
+promotional videos, YouTube content and social media edits.
+I focus on creating high-engagement content that helps brands
+capture attention and boost conversions.
+
+</p>
 
 </div>
 
 </section>
 
-<section id="contact">
+<footer>
 
-<h2 class="section-title">Contact</h2>
+© 2025 Video Editor Portfolio
 
-<div class="contact-links">
-
-<a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
-
-<a href="https://instagram.com/mr.lokesh_28">@mr.lokesh_28</a>
-
-<a href="https://instagram.com/pixelsbylokesh">@pixelsbylokesh</a>
-
-</div>
-
-</section>
+</footer>
 
 <script>
 
-/* LOADER */
-
-window.addEventListener('load',()=>{
-setTimeout(()=>{
-document.getElementById('loader').style.display='none'
-},1200)
-})
-
-/* CURSOR */
-
-const cursor=document.getElementById("cursor")
-
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px"
-cursor.style.top=e.clientY+"px"
-})
-
-/* CURSOR TRAIL */
-
-const dots=[]
-for(let i=0;i<10;i++){
-const d=document.createElement('div')
-d.className='cursor-dot'
-document.body.appendChild(d)
-dots.push(d)
+particlesJS("particles-js",{
+particles:{
+number:{value:90},
+size:{value:3},
+color:{value:"#00ffae"},
+line_linked:{
+enable:true,
+color:"#00ffae",
+opacity:0.2
+},
+move:{
+speed:2.5
 }
-
-let mouseX=0
-let mouseY=0
-
-window.addEventListener('mousemove',e=>{
-mouseX=e.clientX
-mouseY=e.clientY
-})
-
-function animateTrail(){
-
-let x=mouseX
-let y=mouseY
-
-dots.forEach((dot,i)=>{
-
-dot.style.left=x+'px'
-dot.style.top=y+'px'
-
-const next=dots[i+1]||dots[0]
-
-x+=(parseFloat(next.style.left||x)-x)*0.3
-y+=(parseFloat(next.style.top||y)-y)*0.3
-
-})
-
-requestAnimationFrame(animateTrail)
-
 }
-
-animateTrail()
-
-/* PARTICLES */
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-const particles=[]
-
-for(let i=0;i<60;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-vx:(Math.random()-0.5)*0.3,
-vy:(Math.random()-0.5)*0.3
-})
-}
-
-function animateParticles(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-
-p.x+=p.vx
-p.y+=p.vy
-
-if(p.x<0||p.x>canvas.width)p.vx*=-1
-if(p.y<0||p.y>canvas.height)p.vy*=-1
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fillStyle="rgba(74,222,128,0.4)"
-ctx.fill()
-
-})
-
-requestAnimationFrame(animateParticles)
-
-}
-
-animateParticles()
+});
 
 </script>
 
 </body>
 </html>
-```
-
-
-/* ================= MOBILE RESPONSIVE ================= */
-
-@media (max-width:768px){
-
-/* NAVBAR */
-
-nav{
-padding:16px 6%;
-}
-
-.nav-links{
-gap:18px;
-}
-
-.nav-links a{
-font-size:13px;
-}
-
-/* HERO */
-
-.hero{
-padding:0 20px;
-}
-
-.hero h1{
-font-size:42px;
-line-height:1.2;
-}
-
-.hero p{
-font-size:15px;
-}
-
-.hero-buttons{
-flex-direction:column;
-gap:14px;
-margin-top:24px;
-}
-
-.btn{
-width:100%;
-text-align:center;
-}
-
-/* SECTIONS */
-
-section{
-padding:90px 6%;
-}
-
-/* GRAPHICS */
-
-.graphics-grid{
-grid-template-columns:1fr;
-gap:18px;
-}
-
-/* TAPE */
-
-.tape-track{
-font-size:12px;
-letter-spacing:2px;
-}
-
-/* VIDEOS */
-
-.video-grid{
-grid-template-columns:1fr;
-}
-
-.video-card iframe{
-height:200px;
-}
-
-/* ABOUT */
-
-.about-grid{
-grid-template-columns:1fr;
-}
-
-.about-card{
-min-height:auto;
-}
-
-/* CONTACT */
-
-.contact-links a{
-font-size:15px;
-}
-
-}
