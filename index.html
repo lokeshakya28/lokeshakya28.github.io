@@ -1,173 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lokesh Shakya — Graphic & Video Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    /* === Copy your full CSS from before here === */
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lokesh Shakya — Graphic & Video Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0e0e0e;color:#fff;line-height:1.6}
+
+section{padding:100px 8%}
+
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+
+.section-label{color:#888;text-transform:uppercase;font-size:14px;margin-bottom:10px}
+.section-title{font-size:40px;margin-bottom:10px}
+.section-desc{color:#aaa;margin-bottom:40px;max-width:600px}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:999
+}
+
+.logo{font-weight:700}
+
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{color:#fff;text-decoration:none;font-size:14px}
+
+.hamburger{display:none;background:none;border:none;cursor:pointer}
+.hamburger span{display:block;width:25px;height:3px;background:white;margin:5px 0}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:0 8%
+}
+
+.hero-content{max-width:700px}
+.hero-tag{color:#888;margin-bottom:10px}
+.hero h1{font-size:60px;margin-bottom:20px}
+.highlight{color:#4ade80}
+
+.hero-buttons{margin-top:30px;display:flex;gap:20px;justify-content:center}
+
+.btn{padding:12px 24px;border-radius:6px;text-decoration:none;font-size:14px}
+.btn-primary{background:#4ade80;color:#000}
+.btn-outline{border:1px solid #4ade80;color:#4ade80}
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px
+}
+
+.project-card{background:#151515;border-radius:12px;overflow:hidden}
+.project-info{padding:20px}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px
+}
+
+.service-card{
+background:#151515;
+padding:30px;
+border-radius:12px;
+text-align:center;
+transition:0.3s
+}
+
+.service-card:hover{transform:translateY(-6px)}
+
+.service-icon{font-size:30px;margin-bottom:10px}
+
+.reel-container{max-width:800px;margin:auto}
+
+/* VIDEO GRID */
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+margin-top:40px
+}
+
+.video-item{
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:0.3s
+}
+
+.video-item:hover{transform:scale(1.03)}
+
+.video-item iframe{width:100%;height:220px;border:none}
+.video-item.short iframe{height:420px}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center
+}
+
+.about-image{width:100%;border-radius:12px}
+
+.stats{display:flex;gap:30px;margin:20px 0}
+
+.stat-num{font-size:28px;font-weight:700;display:block}
+.stat-label{color:#aaa;font-size:14px}
+
+.tools{margin-top:20px}
+
+.contact-links{display:flex;flex-direction:column;gap:15px}
+.contact-links a{color:#4ade80;text-decoration:none}
+
+footer{
+text-align:center;
+padding:40px 8%;
+color:#777;
+border-top:1px solid #222
+}
+
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(40px);transition:1s}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* responsive */
+
+@media(max-width:768px){
+
+.hero h1{font-size:40px}
+
+.nav-links{
+position:absolute;
+top:70px;
+right:0;
+background:#111;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none
+}
+
+.nav-links.open{display:flex}
+
+.hamburger{display:block}
+
+.about-grid{grid-template-columns:1fr}
+
+}
+</style>
 </head>
+
 <body>
-  <div class="cursor" id="cursor"></div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="logo">Lokesh Shakya</div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#showreel">Showreel</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<nav>
+<div class="logo">Lokesh Shakya</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Graphic Designer & Video Editor</p>
-      <h1>I craft visuals<br/>that <span class="highlight">move & inspire</span></h1>
-      <p>Turning ideas into compelling brand identities, cinematic edits, and motion graphics that capture attention and leave a lasting impact.</p>
-      <div class="hero-buttons">
-        <a href="#work" class="btn btn-primary">View Projects ↓</a>
-        <a href="#contact" class="btn btn-outline">Let's Talk</a>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+<ul class="nav-links" id="navLinks">
+<li><a href="#work">Work</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#showreel">Showreel</a></li>
+<li><a href="#video-work">Videos</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-  <!-- WORK / PORTFOLIO -->
-  <section id="work">
-    <p class="section-label reveal">Selected Work</p>
-    <h2 class="section-title reveal">Recent Projects</h2>
-    <p class="section-desc reveal">A curated selection of Graphic Design and Video Editing projects from my portfolio.</p>
+<button class="hamburger" id="hamburger">
+<span></span><span></span><span></span>
+</button>
+</nav>
 
-    <!-- BEHANCE GRAPHIC PROJECTS EMBED -->
-    <div class="portfolio-grid reveal">
-      <div class="project-card">
-        <div class="thumb-wrapper">
-          <iframe src="https://www.behance.net/gallery/156931371/Portfolio/embed" 
-                  width="100%" height="400" frameborder="0" allowfullscreen allow="autoplay;"></iframe>
-        </div>
-        <div class="project-info">
-          <h3>Graphic Portfolio</h3>
-          <p>From Behance — Logos, branding, editorial layouts, and visual storytelling.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+<div class="hero-content">
+<p class="hero-tag">Graphic Designer & Video Editor</p>
+<h1>I craft visuals <br> that <span class="highlight">move & inspire</span></h1>
+<p>Turning ideas into compelling brand identities and cinematic edits.</p>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <p class="section-label reveal">What I Do</p>
-    <h2 class="section-title reveal">Services</h2>
-    <p class="section-desc reveal">Creative services I offer for brands and creators.</p>
-    <div class="services-grid reveal">
-      <div class="service-card">
-        <div class="service-icon">🎨</div>
-        <h3>Graphic Design</h3>
-        <p>Logos, branding, editorial layouts, visual storytelling.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎬</div>
-        <h3>Video Editing</h3>
-        <p>Cinematic edits, social content, campaign videos.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💡</div>
-        <h3>Branding</h3>
-        <p>Identity design, typography systems, and brand guidelines.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">✨</div>
-        <h3>Motion Graphics</h3>
-        <p>Animated visuals, promo graphics, dynamic storytelling.</p>
-      </div>
-    </div>
-  </section>
+<div class="hero-buttons">
+<a href="#work" class="btn btn-primary">View Projects</a>
+<a href="#contact" class="btn btn-outline">Let's Talk</a>
+</div>
+</div>
+</section>
 
-  <!-- SHOWREEL / VIDEO EDITING -->
-  <section id="showreel">
-    <p class="section-label reveal">Highlight Reel</p>
-    <h2 class="section-title reveal">Showreel</h2>
-    <div class="reel-container reveal">
-      <!-- Example Video from your Drive Folder -->
-      <video width="100%" controls>
-        <source src="https://drive.google.com/uc?export=download&id=1ayB0nqrH1tglr8zDq7ERqqee99noTWxh" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p style="color:#888; text-align:center; margin-top:0.5rem;">Video Editing Portfolio</p>
-    </div>
-  </section>
+<section id="work">
+<p class="section-label reveal">Selected Work</p>
+<h2 class="section-title reveal">Recent Projects</h2>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label reveal">About Me</p>
-    <h2 class="section-title reveal">Hi, I'm Lokesh</h2>
-    <div class="about-grid reveal">
-      <img class="about-image" src="https://via.placeholder.com/400x500?text=Lokesh+Photo" alt="Lokesh Shakya"/>
-      <div class="about-text">
-        <p>Creative Graphic Designer and Video Editor with a passion for crafting visuals that captivate and communicate. Skilled in branding, motion graphics, and cinematic storytelling.</p>
-        <div class="stats">
-          <div>
-            <span class="stat-num">2+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div>
-            <span class="stat-num">50+</span>
-            <span class="stat-label">Projects</span>
-          </div>
-          <div>
-            <span class="stat-num">20+</span>
-            <span class="stat-label">Clients</span>
-          </div>
-        </div>
-        <div class="tools">
-          <h4>Tools & Software</h4>
-          <div class="tool-tags">Photoshop, Illustrator, Premiere Pro, After Effects</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="portfolio-grid reveal">
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label reveal">Get In Touch</p>
-    <h2 class="section-title reveal">Contact Me</h2>
-    <div class="contact-links reveal">
-      <a href="https://instagram.com/mr.lokesh_28" target="_blank">Instagram: @mr.lokesh_28</a>
-      <a href="https://instagram.com/pixelsbylokesh" target="_blank">Instagram: @pixelsbylokesh</a>
-      <a href="mailto:zxlokesh739@gmail.com">Email: zxlokesh739@gmail.com</a>
-    </div>
-  </section>
+<div class="project-card">
+<iframe src="https://www.behance.net/gallery/156931371/Portfolio/embed" width="100%" height="400"></iframe>
+<div class="project-info">
+<h3>Graphic Portfolio</h3>
+<p>Logos, branding, layouts and visual storytelling.</p>
+</div>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2026 Lokesh Shakya — Graphic & Video Portfolio. All rights reserved.<br/>
-    <a href="https://instagram.com/mr.lokesh_28" target="_blank">@mr.lokesh_28</a> | 
-    <a href="https://instagram.com/pixelsbylokesh" target="_blank">@pixelsbylokesh</a> | 
-    <a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
-  </footer>
+</div>
+</section>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+<section id="services">
+<p class="section-label reveal">What I Do</p>
+<h2 class="section-title reveal">Services</h2>
 
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-  </script>
+<div class="services-grid reveal">
+
+<div class="service-card">
+<div class="service-icon">🎨</div>
+<h3>Graphic Design</h3>
+<p>Logos, branding and layouts.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🎬</div>
+<h3>Video Editing</h3>
+<p>Cinematic edits and social media content.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">💡</div>
+<h3>Branding</h3>
+<p>Identity design and brand systems.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">✨</div>
+<h3>Motion Graphics</h3>
+<p>Animated visuals and promos.</p>
+</div>
+
+</div>
+</section>
+
+<section id="showreel">
+<p class="section-label reveal">Highlight Reel</p>
+<h2 class="section-title reveal">Showreel</h2>
+
+<div class="reel-container reveal">
+<video width="100%" controls>
+<source src="https://drive.google.com/uc?export=download&id=1ayB0nqrH1tglr8zDq7ERqqee99noTWxh" type="video/mp4">
+</video>
+</div>
+</section>
+
+<section id="video-work">
+<p class="section-label reveal">Video Editing</p>
+<h2 class="section-title reveal">YouTube Projects</h2>
+
+<div class="video-grid reveal">
+
+<div class="video-item"><iframe src="https://www.youtube.com/embed/FUHYCIQrm2s" allowfullscreen></iframe></div>
+
+<div class="video-item"><iframe src="https://www.youtube.com/embed/AkIBZf1Cvns" allowfullscreen></iframe></div>
+
+<div class="video-item"><iframe src="https://www.youtube.com/embed/EOoVCErJVNU" allowfullscreen></iframe></div>
+
+<div class="video-item"><iframe src="https://www.youtube.com/embed/CbdONoSVDIE" allowfullscreen></iframe></div>
+
+<div class="video-item short"><iframe src="https://www.youtube.com/embed/OUkAhlsFpuo" allowfullscreen></iframe></div>
+
+<div class="video-item short"><iframe src="https://www.youtube.com/embed/Eqx0fdQ47f0" allowfullscreen></iframe></div>
+
+<div class="video-item short"><iframe src="https://www.youtube.com/embed/biMbmg67aZM" allowfullscreen></iframe></div>
+
+</div>
+</section>
+
+<section id="about">
+<p class="section-label reveal">About Me</p>
+<h2 class="section-title reveal">Hi, I'm Lokesh</h2>
+
+<div class="about-grid reveal">
+<img class="about-image" src="https://via.placeholder.com/400x500?text=Lokesh+Photo">
+
+<div>
+<p>Creative designer and editor crafting visuals that captivate and communicate.</p>
+
+<div class="stats">
+<div><span class="stat-num">2+</span><span class="stat-label">Years Experience</span></div>
+<div><span class="stat-num">50+</span><span class="stat-label">Projects</span></div>
+<div><span class="stat-num">20+</span><span class="stat-label">Clients</span></div>
+</div>
+
+<div class="tools">
+<strong>Tools:</strong> Photoshop, Illustrator, Premiere Pro, After Effects
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<p class="section-label reveal">Get In Touch</p>
+<h2 class="section-title reveal">Contact Me</h2>
+
+<div class="contact-links reveal">
+<a href="https://instagram.com/mr.lokesh_28">Instagram: @mr.lokesh_28</a>
+<a href="https://instagram.com/pixelsbylokesh">Instagram: @pixelsbylokesh</a>
+<a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
+</div>
+</section>
+
+<footer>
+© 2026 Lokesh Shakya — Portfolio
+</footer>
+
+<script>
+
+const hamburger=document.getElementById('hamburger')
+const navLinks=document.getElementById('navLinks')
+
+hamburger.addEventListener('click',()=>{
+navLinks.classList.toggle('open')
+})
+
+const reveals=document.querySelectorAll('.reveal')
+
+function revealOnScroll(){
+reveals.forEach(el=>{
+const top=el.getBoundingClientRect().top
+const windowHeight=window.innerHeight
+
+if(top<windowHeight-100){
+el.classList.add('active')
+}
+})
+}
+
+window.addEventListener('scroll',revealOnScroll)
+
+revealOnScroll()
+
+</script>
+
 </body>
 </html>
