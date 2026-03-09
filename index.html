@@ -87,7 +87,10 @@ background:radial-gradient(circle at center,#1a1a1a,#000)
 }
 
 .hero h1{font-size:72px;margin-bottom:20px}
-.highlight{color:#4ade80}
+.highlight{
+color:#4ade80;
+text-shadow:0 0 12px rgba(74,222,128,.65),0 0 34px rgba(74,222,128,.45),0 0 60px rgba(74,222,128,.28)
+}
 
 .hero-buttons{margin-top:30px;display:flex;gap:20px;justify-content:center}
 
@@ -170,7 +173,7 @@ align-items:center
 
 /* CONTACT */
 .contact-links{display:flex;flex-direction:column;gap:15px}
-.contact-links a{color:#4ade80;text-decoration:none}
+.contact-links a{color:#4ade80;text-decoration:none;display:flex;align-items:center;gap:10px}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(50px);transition:1s}
@@ -225,13 +228,132 @@ align-items:center
 </div>
 </section>
 
+<!-- Animated Portfolio Tape -->
+<div class="tape-wrapper">
+  <div class="tape-track">
+    <span>PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS • PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •</span>
+  </div>
+</div>
+
+<style>
+/* Background Glow */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  background:radial-gradient(circle at 30% 30%, rgba(0,255,140,0.15), transparent 40%),
+             radial-gradient(circle at 70% 60%, rgba(0,255,140,0.12), transparent 40%);
+  animation:glowMove 12s linear infinite alternate;
+  z-index:-1;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.28) 1px, transparent 1.6px);
+  background-size:140px 140px;
+  opacity:.24;
+  pointer-events:none;
+  z-index:-1;
+  animation:floatParticles 38s linear infinite;
+}
+
+@keyframes glowMove{
+  from{transform:translateY(-40px) translateX(-20px);} 
+  to{transform:translateY(40px) translateX(20px);} 
+}
+
+@keyframes floatParticles{
+  from{transform:translate3d(0,0,0);} 
+  to{transform:translate3d(-140px,40px,0);} 
+}
+
+/* Portfolio Tape */
+.tape-wrapper{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+  margin:60px 0;
+}
+
+.tape-track{
+  white-space:nowrap;
+  background:white;
+  color:black;
+  font-weight:700;
+  letter-spacing:3px;
+  padding:12px 0;
+  transform:rotate(-2deg);
+  animation:tapeScroll 14s linear infinite;
+}
+
+.tape-track span{
+  font-size:14px;
+}
+
+@keyframes tapeScroll{
+  from{transform:translateX(0) rotate(-2deg);} 
+  to{transform:translateX(-50%) rotate(-2deg);} 
+}
+
+/* Cursor Trail */
+.cursor-dot{
+  width:4px;
+  height:4px;
+  background:#00ff9c;
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  opacity:.65;
+  box-shadow:0 0 6px rgba(0,255,156,.65);
+  z-index:9999;
+}
+</style>
+
+<script>
+// Cursor light trail
+const dots=[];
+for(let i=0;i<12;i++){
+  const d=document.createElement('div');
+  d.className='cursor-dot';
+  document.body.appendChild(d);
+  dots.push(d);
+}
+
+let mouseX=0,mouseY=0;
+
+window.addEventListener('mousemove',e=>{
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+});
+
+function animate(){
+  let x=mouseX;
+  let y=mouseY;
+
+  dots.forEach((dot,i)=>{
+    dot.style.left=x+'px';
+    dot.style.top=y+'px';
+
+    const next=dots[i+1]||dots[0];
+    x+=(parseFloat(next.style.left||x)-x )*0.22;
+    y+=(parseFloat(next.style.top||y)-y )*0.22;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
 <section id="videos">
 <p class="section-label reveal">Video Editing</p>
 <h2 class="section-title reveal">Video Projects</h2>
 
 <div class="video-category reveal">
-<h3>BTS Edits</h3>
-<p class="section-desc">Behind the scenes style edits with cinematic storytelling and transitions.</p>
+<h3>BTS</h3>
+<p class="section-desc">Behind the scene edit.</p>
 
 <div class="video-grid">
 <div class="video-card">
@@ -245,8 +367,8 @@ align-items:center
 </div>
 
 <div class="video-category reveal">
-<h3>UGC Reels</h3>
-<p class="section-desc">Short form vertical videos created for social media brands and creators.</p>
+<h3>UGC</h3>
+<p class="section-desc">UGC.</p>
 
 <div class="video-grid">
 <div class="video-card">
@@ -265,35 +387,40 @@ align-items:center
 </div>
 </div>
 
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/biMbmg67aZM" allowfullscreen></iframe>
-<div class="video-info">
-<h4>Brand Reel</h4>
-<span>UGC Content</span>
-</div>
-</div>
 
 </div>
 </div>
 
 <div class="video-category reveal">
-<h3>YouTube Videos</h3>
-<p class="section-desc">Long form content edited for YouTube creators.</p>
+<h3>Gaming</h3>
+<p class="section-desc">Gaming video.</p>
 
 <div class="video-grid">
 <div class="video-card">
 <iframe src="https://www.youtube.com/embed/AkIBZf1Cvns" allowfullscreen></iframe>
-<div class="video-info"><h4>YouTube Video Edit</h4><span>Long Form</span></div>
+<div class="video-info"><h4>Gaming Video</h4><span>Gaming</span></div>
+</div>
+</div>
 </div>
 
+<div class="video-category reveal">
+<h3>Other Edits</h3>
+<p class="section-desc">Gym, watch, and car edits.</p>
+
+<div class="video-grid">
 <div class="video-card">
 <iframe src="https://www.youtube.com/embed/EOoVCErJVNU" allowfullscreen></iframe>
-<div class="video-info"><h4>YouTube Edit</h4><span>Creator Content</span></div>
+<div class="video-info"><h4>Gym Edit</h4><span>Other Edit</span></div>
 </div>
 
 <div class="video-card">
 <iframe src="https://www.youtube.com/embed/CbdONoSVDIE" allowfullscreen></iframe>
-<div class="video-info"><h4>Story Video</h4><span>YouTube Content</span></div>
+<div class="video-info"><h4>Watch Edit</h4><span>Other Edit</span></div>
+</div>
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/biMbmg67aZM" allowfullscreen></iframe>
+<div class="video-info"><h4>Car Edit</h4><span>Other Edit</span></div>
 </div>
 
 </div>
@@ -364,11 +491,17 @@ align-items:center
 }
 
 .about-card{
+  height:100%;
   padding:25px;
   border-radius:16px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  background:linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+  border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 28px rgba(0,0,0,0.28);
   transition:0.3s;
 }
 
@@ -388,9 +521,9 @@ align-items:center
 <h2 class="section-title reveal">Let's Work Together</h2>
 
 <div class="contact-links reveal">
-<a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
-<a href="https://instagram.com/mr.lokesh_28">@mr.lokesh_28</a>
-<a href="https://instagram.com/pixelsbylokesh">@pixelsbylokesh</a>
+<a href="mailto:zxlokesh739@gmail.com"><span>✉️</span> zxlokesh739@gmail.com</a>
+<a href="https://instagram.com/mr.lokesh_28"><span>📸</span> @mr.lokesh_28</a>
+<a href="https://instagram.com/pixelsbylokesh"><span>📸</span> @pixelsbylokesh</a>
 </div>
 </section>
 
@@ -432,106 +565,7 @@ revealOnScroll()
 
 
 
-<!-- Animated Portfolio Tape -->
-<div class="tape-wrapper">
-  <div class="tape-track">
-    <span>PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS • PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •</span>
-  </div>
-</div>
 
-<style>
-/* Background Glow */
-body::before{
-  content:"";
-  position:fixed;
-  inset:-20%;
-  background:radial-gradient(circle at 30% 30%, rgba(0,255,140,0.15), transparent 40%),
-             radial-gradient(circle at 70% 60%, rgba(0,255,140,0.12), transparent 40%);
-  animation:glowMove 12s linear infinite alternate;
-  z-index:-1;
-}
-
-@keyframes glowMove{
-  from{transform:translateY(-40px) translateX(-20px);} 
-  to{transform:translateY(40px) translateX(20px);} 
-}
-
-/* Portfolio Tape */
-.tape-wrapper{
-  width:100%;
-  overflow:hidden;
-  position:relative;
-  margin:60px 0;
-}
-
-.tape-track{
-  white-space:nowrap;
-  background:white;
-  color:black;
-  font-weight:700;
-  letter-spacing:3px;
-  padding:12px 0;
-  transform:rotate(-2deg);
-  animation:tapeScroll 14s linear infinite;
-}
-
-.tape-track span{
-  font-size:14px;
-}
-
-@keyframes tapeScroll{
-  from{transform:translateX(0) rotate(-2deg);} 
-  to{transform:translateX(-50%) rotate(-2deg);} 
-}
-
-/* Cursor Trail */
-.cursor-dot{
-  width:6px;
-  height:6px;
-  background:#00ff9c;
-  border-radius:50%;
-  position:fixed;
-  pointer-events:none;
-  box-shadow:0 0 12px #00ff9c;
-  z-index:9999;
-}
-</style>
-
-<script>
-// Cursor light trail
-const dots=[];
-for(let i=0;i<20;i++){
-  const d=document.createElement('div');
-  d.className='cursor-dot';
-  document.body.appendChild(d);
-  dots.push(d);
-}
-
-let mouseX=0,mouseY=0;
-
-window.addEventListener('mousemove',e=>{
-  mouseX=e.clientX;
-  mouseY=e.clientY;
-});
-
-function animate(){
-  let x=mouseX;
-  let y=mouseY;
-
-  dots.forEach((dot,i)=>{
-    dot.style.left=x+'px';
-    dot.style.top=y+'px';
-
-    const next=dots[i+1]||dots[0];
-    x+=(parseFloat(next.style.left||x)-x)*0.3;
-    y+=(parseFloat(next.style.top||y)-y)*0.3;
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-</script>
 
 </body>
 </html>
