@@ -1,13 +1,174 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Lokesh Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio | visual architect</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --text: #f0f0f0;
+            --accent: #555;
+            --hover: #fff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'inter', 'helvetica neue', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0 5%;
+        }
+        header {
+            padding: 10vh 0 5vh;
+            border-bottom: 1px solid #222;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            color: #888;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .filters {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        button {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        button:hover, button.active {
+            color: var(--bg);
+            background: var(--hover);
+            border-color: var(--hover);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 10vh;
+        }
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+        .media-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+        }
+        .media-container img, .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .info { padding: 15px; }
+        .info h3 { font-size: 1.1rem; text-transform: uppercase; }
+        .info p { color: #666; font-size: 0.9rem; }
+        .hidden { display: none; }
+        a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); }
+        a:hover { border-color: var(--hover); }
+    </style>
 </head>
-
 <body>
 
-<h1>Welcome to my website</h1>
-<p>This website is hosted using GitHub Pages.</p>
+    <header>
+        <h1>your name</h1>
+        <p class="subtitle">graphics designer // video editor</p>
+        <p style="margin-top: 20px;"><a href="mailto:you@email.com">book me</a></p>
+    </header>
 
+    <div class="filters">
+        <button class="active" onclick="filterSelection('all')">all</button>
+        <button onclick="filterSelection('graphics')">graphics</button>
+        <button onclick="filterSelection('video')">video</button>
+    </div>
+
+    <div class="grid">
+        <!-- project 1: graphics -->
+        <div class="card graphics">
+            <div class="media-container">
+                <!-- replace src with your image -->
+                <img src="https://via.placeholder.com/600x400/1a1a1a/555555?text=DREXON+LOGO" alt="drexon branding">
+            </div>
+            <div class="info">
+                <h3>drexon branding</h3>
+                <p>corporate identity & logo design</p>
+            </div>
+        </div>
+
+        <!-- project 2: video -->
+        <div class="card video">
+            <div class="media-container">
+                <!-- replace src with your video -->
+                <video muted loop onmouseover="this.play()" onmouseout="this.pause()">
+                    <source src="your-video-file.mp4" type="video/mp4">
+                    video not supported.
+                </video>
+            </div>
+            <div class="info">
+                <h3>commercial reel</h3>
+                <p>editing & color grading (hover to play)</p>
+            </div>
+        </div>
+        
+        <!-- project 3: graphics -->
+        <div class="card graphics">
+            <div class="media-container">
+                <img src="https://via.placeholder.com/600x400/1a1a1a/555555?text=POSTER+DESIGN" alt="poster">
+            </div>
+            <div class="info">
+                <h3>event poster</h3>
+                <p>typography & layout</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterSelection(c) {
+            let x = document.getElementsByClassName("card");
+            let btns = document.getElementsByTagName("button");
+            
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if(btns[i].getAttribute("onclick").includes(c)) {
+                    btns[i].classList.add("active");
+                }
+            }
+
+            for (let i = 0; i < x.length; i++) {
+                x[i].classList.add("hidden");
+                if (c == "all" || x[i].classList.contains(c)) {
+                    x[i].classList.remove("hidden");
+                }
+            }
+        }
+        // init
+        filterSelection('all');
+    </script>
 </body>
 </html>
