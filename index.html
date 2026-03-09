@@ -3,498 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Graphic Design & Video Editing</title>
+  <title>Lokesh Shakya — Graphic & Video Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #0a0a0a;
-      --surface: #141414;
-      --card: #1a1a1a;
-      --accent: #c4ff36;
-      --accent-dim: #a8d92e;
-      --text: #e8e8e8;
-      --muted: #888;
-      --radius: 12px;
-      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ——— CUSTOM CURSOR ——— */
-    .cursor {
-      width: 18px; height: 18px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-      transform: translate(-50%, -50%);
-    }
-    .cursor.active { transform: translate(-50%, -50%) scale(2.5); opacity: 0.4; }
-
-    /* ——— NAVIGATION ——— */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      padding: 1.2rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      backdrop-filter: blur(20px);
-      background: rgba(10,10,10,0.7);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.4rem;
-      color: var(--accent);
-      letter-spacing: -0.5px;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.85rem; font-weight: 400;
-      letter-spacing: 1px; text-transform: uppercase;
-      transition: color var(--transition);
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute;
-      bottom: -4px; left: 0; width: 0; height: 2px;
-      background: var(--accent);
-      transition: width var(--transition);
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; background: none; border: none;
-    }
-    .hamburger span {
-      width: 24px; height: 2px; background: var(--text);
-      transition: var(--transition);
-    }
-
-    /* ——— HERO ——— */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 8rem 3rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(196,255,54,0.06) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 20%, rgba(196,255,54,0.03) 0%, transparent 50%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
-    .hero-tag {
-      font-size: 0.8rem; text-transform: uppercase;
-      letter-spacing: 3px; color: var(--accent);
-      margin-bottom: 1.5rem; font-weight: 600;
-    }
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 .highlight {
-      color: var(--accent);
-      display: inline-block;
-    }
-    .hero p {
-      font-size: 1.15rem; color: var(--muted);
-      max-width: 560px; margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      padding: 0.9rem 2.2rem;
-      border-radius: 50px; font-size: 0.85rem;
-      font-weight: 600; text-decoration: none;
-      letter-spacing: 0.5px;
-      transition: all var(--transition);
-      cursor: pointer; border: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-primary {
-      background: var(--accent); color: #0a0a0a;
-    }
-    .btn-primary:hover {
-      background: var(--accent-dim);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(196,255,54,0.25);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--text);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .scroll-indicator {
-      position: absolute; bottom: 2rem;
-      left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column;
-      align-items: center; gap: 0.5rem;
-    }
-    .scroll-indicator span {
-      font-size: 0.7rem; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--muted);
-    }
-    .scroll-line {
-      width: 1px; height: 40px; background: rgba(255,255,255,0.1);
-      position: relative; overflow: hidden;
-    }
-    .scroll-line::after {
-      content: ''; position: absolute; top: -100%;
-      width: 100%; height: 100%;
-      background: var(--accent);
-      animation: scrollDown 2s infinite;
-    }
-    @keyframes scrollDown { 0%{top:-100%} 100%{top:100%} }
-
-    /* ——— SECTIONS GENERAL ——— */
-    section { padding: 6rem 3rem; }
-    .section-label {
-      font-size: 0.75rem; text-transform: uppercase;
-      letter-spacing: 3px; color: var(--accent);
-      margin-bottom: 0.75rem; font-weight: 600;
-    }
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700; letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-    .section-desc {
-      color: var(--muted); max-width: 520px;
-      font-size: 1rem; margin-bottom: 3rem; line-height: 1.7;
-    }
-
-    /* ——— WORK / PORTFOLIO ——— */
-    #work { max-width: 1200px; margin: 0 auto; }
-
-    .filter-bar {
-      display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 0.5rem 1.3rem; border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: transparent; color: var(--muted);
-      font-size: 0.8rem; cursor: pointer;
-      transition: all var(--transition);
-    }
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--accent); color: var(--accent);
-      background: rgba(196,255,54,0.06);
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.04);
-      transition: all var(--transition);
-      cursor: pointer;
-      position: relative;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(196,255,54,0.2);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-    .project-thumb {
-      width: 100%; aspect-ratio: 16/10;
-      object-fit: cover; display: block;
-      transition: transform 0.6s ease;
-    }
-    .project-card:hover .project-thumb { transform: scale(1.05); }
-    .thumb-wrapper { overflow: hidden; position: relative; }
-    .project-type {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-      padding: 0.3rem 0.8rem; border-radius: 50px;
-      font-size: 0.7rem; text-transform: uppercase;
-      letter-spacing: 1px; color: var(--accent); font-weight: 600;
-    }
-    .project-info { padding: 1.3rem; }
-    .project-info h3 {
-      font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem;
-    }
-    .project-info p { font-size: 0.82rem; color: var(--muted); }
-
-    /* ——— SERVICES ——— */
-    #services { max-width: 1200px; margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.04);
-      border-radius: var(--radius);
-      padding: 2.2rem;
-      transition: all var(--transition);
-    }
-    .service-card:hover {
-      border-color: rgba(196,255,54,0.15);
-      transform: translateY(-4px);
-    }
-    .service-icon {
-      width: 48px; height: 48px;
-      background: rgba(196,255,54,0.08);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; margin-bottom: 1.3rem;
-    }
-    .service-card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
-    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
-
-    /* ——— ABOUT ——— */
-    #about { max-width: 1200px; margin: 0 auto; }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 4rem; align-items: center;
-    }
-    .about-image {
-      width: 100%; aspect-ratio: 4/5;
-      border-radius: var(--radius);
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .about-text h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 700;
-    }
-    .about-text p {
-      color: var(--muted); margin-bottom: 1rem;
-      font-size: 0.95rem; line-height: 1.8;
-    }
-    .stats {
-      display: flex; gap: 2.5rem; margin-top: 2rem;
-      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem; font-weight: 800;
-      color: var(--accent); display: block;
-    }
-    .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-
-    /* ——— TOOLS ——— */
-    .tools { margin-top: 2.5rem; }
-    .tools h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 1rem; }
-    .tool-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .tool-tag {
-      padding: 0.4rem 1rem; border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.78rem; color: var(--text);
-    }
-
-    /* ——— SHOWREEL ——— */
-    #showreel { max-width: 1200px; margin: 0 auto; text-align: center; }
-    .reel-container {
-      position: relative; margin-top: 2rem;
-      border-radius: var(--radius); overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
-      aspect-ratio: 16/9; background: var(--card);
-    }
-    .reel-container video,
-    .reel-container iframe {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
-    .reel-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      background: var(--card); cursor: pointer;
-      transition: background var(--transition);
-    }
-    .reel-placeholder:hover { background: #1f1f1f; }
-    .play-btn {
-      width: 80px; height: 80px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
-      transition: all var(--transition);
-    }
-    .play-btn:hover {
-      background: var(--accent);
-      transform: scale(1.1);
-    }
-    .play-btn:hover .play-tri { border-left-color: #0a0a0a; }
-    .play-tri {
-      width: 0; height: 0;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      border-left: 20px solid var(--accent);
-      margin-left: 4px;
-      transition: border-left-color var(--transition);
-    }
-    .reel-placeholder p { color: var(--muted); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
-
-    /* ——— TESTIMONIALS ——— */
-    #testimonials { max-width: 1200px; margin: 0 auto; }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-    .testimonial-card {
-      background: var(--card); padding: 2rem;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-    .testimonial-card .quote {
-      font-size: 0.95rem; color: var(--text);
-      line-height: 1.8; margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-    .testimonial-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(196,255,54,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; color: var(--accent); font-size: 0.9rem;
-    }
-    .testimonial-name { font-size: 0.9rem; font-weight: 600; }
-    .testimonial-role { font-size: 0.78rem; color: var(--muted); }
-
-    /* ——— CONTACT ——— */
-    #contact { max-width: 800px; margin: 0 auto; text-align: center; }
-    .contact-form {
-      display: grid; gap: 1.2rem;
-      margin-top: 2rem; text-align: left;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label {
-      font-size: 0.75rem; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--muted);
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px; padding: 0.9rem 1.1rem;
-      color: var(--text); font-family: inherit;
-      font-size: 0.92rem; outline: none;
-      transition: border-color var(--transition);
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--accent);
-    }
-    .form-group textarea { resize: vertical; min-height: 140px; }
-    .form-group select option { background: var(--card); }
-    .contact-form .btn-primary { justify-self: center; margin-top: 1rem; }
-
-    .contact-links {
-      display: flex; justify-content: center;
-      gap: 2rem; margin-top: 3rem;
-    }
-    .contact-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.85rem; transition: color var(--transition);
-    }
-    .contact-links a:hover { color: var(--accent); }
-
-    /* ——— FOOTER ——— */
-    footer {
-      text-align: center; padding: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      color: var(--muted); font-size: 0.8rem;
-    }
-
-    /* ——— LIGHTBOX ——— */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 5000;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(20px);
-      display: none; align-items: center; justify-content: center;
-      padding: 2rem;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 90%; max-height: 85vh;
-      border-radius: var(--radius);
-      object-fit: contain;
-    }
-    .lightbox-close {
-      position: absolute; top: 1.5rem; right: 2rem;
-      background: none; border: none; color: var(--text);
-      font-size: 2rem; cursor: pointer;
-      transition: color var(--transition);
-    }
-    .lightbox-close:hover { color: var(--accent); }
-
-    /* ——— REVEAL ANIMATION ——— */
-    .reveal {
-      opacity: 0; transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ——— RESPONSIVE ——— */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links {
-        display: none; flex-direction: column;
-        position: absolute; top: 100%; left: 0; width: 100%;
-        background: rgba(10,10,10,0.95);
-        backdrop-filter: blur(20px);
-        padding: 2rem; gap: 1.5rem;
-      }
-      .nav-links.open { display: flex; }
-      .hamburger { display: flex; }
-      section { padding: 4rem 1.5rem; }
-      .hero { padding: 7rem 1.5rem 3rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .stats { gap: 1.5rem; }
-    }
+    /* === Copy your full CSS from before here === */
   </style>
 </head>
 <body>
-
   <div class="cursor" id="cursor"></div>
 
   <!-- NAV -->
   <nav>
-    <div class="logo">YOURNAME.</div>
+    <div class="logo">Lokesh Shakya</div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#work">Work</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#showreel">Showreel</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#testimonials">Clients</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -507,8 +32,8 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
       <p class="hero-tag">Graphic Designer & Video Editor</p>
-      <h1>I craft visuals<br/>that <span class="highlight">move</span> people.</h1>
-      <p>From brand identities to cinematic edits — turning ideas into visual stories that stick with your audience long after the screen goes dark.</p>
+      <h1>I craft visuals<br/>that <span class="highlight">move & inspire</span></h1>
+      <p>Turning ideas into compelling brand identities, cinematic edits, and motion graphics that capture attention and leave a lasting impact.</p>
       <div class="hero-buttons">
         <a href="#work" class="btn btn-primary">View Projects ↓</a>
         <a href="#contact" class="btn btn-outline">Let's Talk</a>
@@ -520,56 +45,129 @@
     </div>
   </section>
 
-  <!-- WORK -->
+  <!-- WORK / PORTFOLIO -->
   <section id="work">
     <p class="section-label reveal">Selected Work</p>
     <h2 class="section-title reveal">Recent Projects</h2>
-    <p class="section-desc reveal">A curated selection of brand work, motion pieces, and editorial design from the last two years.</p>
+    <p class="section-desc reveal">A curated selection of Graphic Design and Video Editing projects from my portfolio.</p>
 
-    <div class="filter-bar reveal">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="design">Graphic Design</button>
-      <button class="filter-btn" data-filter="video">Video Editing</button>
-      <button class="filter-btn" data-filter="branding">Branding</button>
-      <button class="filter-btn" data-filter="motion">Motion Graphics</button>
-    </div>
-
+    <!-- BEHANCE GRAPHIC PROJECTS EMBED -->
     <div class="portfolio-grid reveal">
-
-      <div class="project-card" data-category="branding" data-img="https://placehold.co/800x500/1a1a1a/c4ff36?text=Brand+Identity">
+      <div class="project-card">
         <div class="thumb-wrapper">
-          <img class="project-thumb" src="https://placehold.co/800x500/1a1a1a/c4ff36?text=Brand+Identity" alt="Novus Brand Identity"/>
-          <span class="project-type">Branding</span>
+          <iframe src="https://www.behance.net/gallery/156931371/Portfolio/embed" 
+                  width="100%" height="400" frameborder="0" allowfullscreen allow="autoplay;"></iframe>
         </div>
         <div class="project-info">
-          <h3>Novus — Brand Identity</h3>
-          <p>Logo, typography system, and full brand guidelines for a tech startup.</p>
+          <h3>Graphic Portfolio</h3>
+          <p>From Behance — Logos, branding, editorial layouts, and visual storytelling.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="project-card" data-category="video" data-img="https://placehold.co/800x500/1a1a1a/c4ff36?text=Campaign+Film">
-        <div class="thumb-wrapper">
-          <img class="project-thumb" src="https://placehold.co/800x500/1a1a1a/c4ff36?text=Campaign+Film" alt="Meridian Campaign"/>
-          <span class="project-type">Video</span>
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label reveal">What I Do</p>
+    <h2 class="section-title reveal">Services</h2>
+    <p class="section-desc reveal">Creative services I offer for brands and creators.</p>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Graphic Design</h3>
+        <p>Logos, branding, editorial layouts, visual storytelling.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎬</div>
+        <h3>Video Editing</h3>
+        <p>Cinematic edits, social content, campaign videos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Branding</h3>
+        <p>Identity design, typography systems, and brand guidelines.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Motion Graphics</h3>
+        <p>Animated visuals, promo graphics, dynamic storytelling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWREEL / VIDEO EDITING -->
+  <section id="showreel">
+    <p class="section-label reveal">Highlight Reel</p>
+    <h2 class="section-title reveal">Showreel</h2>
+    <div class="reel-container reveal">
+      <!-- Example Video from your Drive Folder -->
+      <video width="100%" controls>
+        <source src="https://drive.google.com/uc?export=download&id=1ayB0nqrH1tglr8zDq7ERqqee99noTWxh" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p style="color:#888; text-align:center; margin-top:0.5rem;">Video Editing Portfolio</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">About Me</p>
+    <h2 class="section-title reveal">Hi, I'm Lokesh</h2>
+    <div class="about-grid reveal">
+      <img class="about-image" src="https://via.placeholder.com/400x500?text=Lokesh+Photo" alt="Lokesh Shakya"/>
+      <div class="about-text">
+        <p>Creative Graphic Designer and Video Editor with a passion for crafting visuals that captivate and communicate. Skilled in branding, motion graphics, and cinematic storytelling.</p>
+        <div class="stats">
+          <div>
+            <span class="stat-num">2+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div>
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div>
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Clients</span>
+          </div>
         </div>
-        <div class="project-info">
-          <h3>Meridian — Campaign Film</h3>
-          <p>60-second hero spot for a sustainable fashion line. Shot, edited, graded.</p>
+        <div class="tools">
+          <h4>Tools & Software</h4>
+          <div class="tool-tags">Photoshop, Illustrator, Premiere Pro, After Effects</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="project-card" data-category="design" data-img="https://placehold.co/800x500/1a1a1a/c4ff36?text=Editorial+Layout">
-        <div class="thumb-wrapper">
-          <img class="project-thumb" src="https://placehold.co/800x500/1a1a1a/c4ff36?text=Editorial+Layout" alt="Drift Magazine"/>
-          <span class="project-type">Design</span>
-        </div>
-        <div class="project-info">
-          <h3>Drift Magazine — Editorial</h3>
-          <p>Cover and interior spreads for a quarterly architecture publication.</p>
-        </div>
-      </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Contact Me</h2>
+    <div class="contact-links reveal">
+      <a href="https://instagram.com/mr.lokesh_28" target="_blank">Instagram: @mr.lokesh_28</a>
+      <a href="https://instagram.com/pixelsbylokesh" target="_blank">Instagram: @pixelsbylokesh</a>
+      <a href="mailto:zxlokesh739@gmail.com">Email: zxlokesh739@gmail.com</a>
+    </div>
+  </section>
 
-      <div class="project-card" data-category="motion" data-img="https://placehold.co/800x500/1a1a1a/c4ff36?text=Motion+Graphics">
-        <div class="thumb-wrapper">
-          <img class="project-thumb" src="https://placehold.co/800x500/1a1a1a/c4ff36?text=Motion+Graphics" alt="Pulse Motion Pack"/>
-          <span class="project-type">Motion
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 Lokesh Shakya — Graphic & Video Portfolio. All rights reserved.<br/>
+    <a href="https://instagram.com/mr.lokesh_28" target="_blank">@mr.lokesh_28</a> | 
+    <a href="https://instagram.com/pixelsbylokesh" target="_blank">@pixelsbylokesh</a> | 
+    <a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+  </script>
+</body>
+</html>
