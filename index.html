@@ -8,7 +8,7 @@
 
 <title>Lokesh Shakya — Creative Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,15 +20,15 @@ padding:0;
 box-sizing:border-box;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 font-family:'Inter',sans-serif;
 background:#0b0b0b;
 color:#fff;
 overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 /* PARTICLES */
@@ -52,11 +52,34 @@ background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 z-index:9999;
-font-size:42px;
-font-weight:800;
+}
+
+.loader-name{
+font-size:48px;
 letter-spacing:6px;
+font-weight:800;
 font-family:'Space Grotesk',sans-serif;
+animation:reveal 1.2s ease forwards;
+}
+
+.loader-role{
+margin-top:12px;
+color:#4ade80;
+letter-spacing:3px;
+opacity:0;
+animation:fadeIn 1.6s forwards;
+animation-delay:.6s;
+}
+
+@keyframes reveal{
+0%{opacity:0;transform:translateY(30px)}
+100%{opacity:1;transform:translateY(0)}
+}
+
+@keyframes fadeIn{
+to{opacity:1}
 }
 
 /* CURSOR */
@@ -69,19 +92,6 @@ border-radius:50%;
 position:fixed;
 pointer-events:none;
 transform:translate(-50%,-50%);
-z-index:999;
-}
-
-/* CURSOR TRAIL */
-
-.cursor-dot{
-width:5px;
-height:5px;
-background:#00ff9c;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-box-shadow:0 0 8px #00ff9c;
 z-index:999;
 }
 
@@ -117,27 +127,15 @@ list-style:none;
 color:#ddd;
 text-decoration:none;
 font-size:14px;
-position:relative;
-transition:0.3s;
+padding:6px 12px;
+border-radius:30px;
+transition:.3s;
 }
 
-.nav-links a::after{
-content:"";
-position:absolute;
-bottom:-6px;
-left:0;
-width:0%;
-height:2px;
-background:#4ade80;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:#4ade80;
-}
-
-.nav-links a:hover::after{
-width:100%;
+.nav-links a.active{
+background:#fff;
+color:#000;
+box-shadow:0 0 12px rgba(255,255,255,0.5);
 }
 
 /* HERO */
@@ -148,29 +146,34 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:radial-gradient(circle at center,#1a1a1a,#000);
+position:relative;
+background:#000;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:#4ade80;
+filter:blur(160px);
+opacity:.2;
+animation:float 8s infinite alternate;
+}
+
+@keyframes float{
+0%{transform:translate(-120px,-80px)}
+100%{transform:translate(120px,80px)}
 }
 
 .hero h1{
 font-size:72px;
 margin-bottom:20px;
-opacity:0;
-transform:translateY(40px);
-animation:heroFade 1.5s ease forwards;
-}
-
-@keyframes heroFade{
-to{
-opacity:1;
-transform:translateY(0);
-}
 }
 
 .highlight{
 color:#4ade80;
-text-shadow:
-0 0 8px rgba(74,222,128,0.6),
-0 0 18px rgba(74,222,128,0.4);
 }
 
 .hero-buttons{
@@ -185,7 +188,6 @@ padding:14px 28px;
 border-radius:8px;
 text-decoration:none;
 font-size:14px;
-transition:0.3s;
 }
 
 .btn-primary{
@@ -193,46 +195,30 @@ background:#4ade80;
 color:#000;
 }
 
-.btn-primary:hover{
-transform:translateY(-3px);
-}
-
 .btn-outline{
 border:1px solid #4ade80;
 color:#4ade80;
 }
 
-.btn-outline:hover{
-background:#4ade80;
-color:#000;
-}
-
-/* SECTIONS */
+/* SECTION */
 
 section{
 padding:120px 8%;
 }
 
-.section-label{
-color:#777;
-text-transform:uppercase;
-font-size:13px;
-letter-spacing:2px;
-margin-bottom:10px;
-}
-
 .section-title{
 font-size:44px;
 margin-bottom:30px;
-font-family:'Space Grotesk',sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
-/* GRAPHICS */
+/* GRAPHICS BENTO GRID */
 
 .graphics-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+grid-template-columns:repeat(4,1fr);
+grid-auto-rows:220px;
+gap:20px;
 }
 
 .graphic-item{
@@ -249,53 +235,23 @@ transition:.4s;
 }
 
 .graphic-item:hover img{
-transform:scale(1.08);
+transform:scale(1.1);
 }
 
-/* TAPE */
-
-.tape-wrapper{
-width:100%;
-overflow:hidden;
-margin:60px 0;
+.graphic-item:nth-child(1){
+grid-column:span 2;
+grid-row:span 2;
 }
 
-.tape-track{
-white-space:nowrap;
-background:#fff;
-color:#000;
-font-weight:700;
-letter-spacing:3px;
-padding:14px 0;
-clip-path:polygon(0 20%,100% 0,100% 80%,0 100%);
-animation:tapeScroll 18s linear infinite;
+.graphic-item:nth-child(4){
+grid-column:span 2;
 }
 
-.tape-track span{
-display:inline-block;
-padding-left:100%;
-}
-
-@keyframes tapeScroll{
-from{transform:translateX(0)}
-to{transform:translateX(-100%)}
-}
-
-/* VIDEO */
-
-.video-category{
-margin-top:70px;
-}
-
-.video-category h3{
-font-size:26px;
-margin-bottom:20px;
-color:#4ade80;
-}
+/* VIDEO GRID */
 
 .video-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:25px;
 }
 
@@ -304,17 +260,18 @@ background:#111;
 border-radius:16px;
 overflow:hidden;
 box-shadow:0 10px 40px rgba(0,0,0,.6);
-transition:0.3s;
 }
 
-.video-card:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 50px rgba(0,255,150,0.3);
+.video-card.landscape iframe{
+height:260px;
+}
+
+.video-card.portrait iframe{
+height:420px;
 }
 
 .video-card iframe{
 width:100%;
-height:220px;
 border:none;
 }
 
@@ -338,10 +295,6 @@ background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.12);
 backdrop-filter:blur(20px);
 transition:.4s;
-min-height:160px;
-display:flex;
-flex-direction:column;
-justify-content:center;
 }
 
 .about-card:hover{
@@ -351,43 +304,61 @@ box-shadow:0 20px 40px rgba(0,255,140,0.2);
 
 /* CONTACT */
 
-.contact-links{
-display:flex;
-flex-direction:column;
-gap:15px;
-margin-top:20px;
+.contact-card{
+max-width:600px;
+margin:auto;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+text-align:center;
 }
 
-.contact-links a{
+.contact-buttons{
+margin-top:25px;
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.contact-btn{
+padding:12px 22px;
+border-radius:30px;
+border:1px solid #4ade80;
 color:#4ade80;
 text-decoration:none;
-font-size:16px;
+transition:.3s;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:42px;
+.contact-btn:hover{
+background:#4ade80;
+color:#000;
 }
 
-.section-title{
-font-size:32px;
+/* SCROLL PROGRESS */
+
+#progress{
+position:fixed;
+right:30px;
+bottom:30px;
+width:70px;
+height:70px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+background:#111;
 }
 
-nav{
-padding:15px 6%;
+#progress svg{
+transform:rotate(-90deg);
 }
 
-.nav-links{
-gap:18px;
-}
-
-.video-card iframe{
-height:200px;
-}
-
+.arrow{
+position:absolute;
+font-size:20px;
+color:#4ade80;
 }
 
 </style>
@@ -398,7 +369,10 @@ height:200px;
 
 <canvas id="particles"></canvas>
 
-<div id="loader">LOKESH SHAKYA</div>
+<div id="loader">
+<h1 class="loader-name">LOKESH SHAKYA</h1>
+<p class="loader-role">Graphic Designer • Video Editor</p>
+</div>
 
 <div class="cursor" id="cursor"></div>
 
@@ -419,7 +393,7 @@ height:200px;
 
 <div>
 
-<h1>Creative <span class="highlight">Visual Editor</span></h1>
+<h1>Creative <span class="highlight">Visual Designer</span></h1>
 
 <p>I design graphics and craft engaging videos for creators & brands.</p>
 
@@ -432,11 +406,8 @@ height:200px;
 
 </section>
 
-<!-- GRAPHICS -->
-
 <section id="graphics">
 
-<p class="section-label">Graphic Design</p>
 <h2 class="section-title">My Design Work</h2>
 
 <div class="graphics-grid">
@@ -445,100 +416,69 @@ height:200px;
 <div class="graphic-item"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb"></div>
 <div class="graphic-item"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb"></div>
 <div class="graphic-item"><img src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766"></div>
 
-</div>
-
-<div class="tape-wrapper">
-<div class="tape-track">
-<span>
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •
-PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •
-</span>
-</div>
 </div>
 
 </section>
-
-<!-- VIDEOS -->
 
 <section id="videos">
 
 <h2 class="section-title">Video Projects</h2>
 
-<div class="video-category">
-
-<h3>Behind The Scene Edit</h3>
-
 <div class="video-grid">
-<div class="video-card">
+
+<div class="video-card landscape">
 <iframe src="https://www.youtube.com/embed/FUHYCIQrm2s"></iframe>
 <div class="video-info">Behind The Scene Edit</div>
 </div>
-</div>
 
-</div>
-
-<div class="video-category">
-
-<h3>UGC</h3>
-
-<div class="video-grid">
-
-<div class="video-card">
+<div class="video-card portrait">
 <iframe src="https://www.youtube.com/embed/OUkAhlsFpuo"></iframe>
 <div class="video-info">UGC</div>
 </div>
 
-<div class="video-card">
+<div class="video-card portrait">
 <iframe src="https://www.youtube.com/embed/Eqx0fdQ47f0"></iframe>
 <div class="video-info">UGC</div>
 </div>
 
-</div>
-
-</div>
-
-<div class="video-category">
-
-<h3>Other Edits</h3>
-
-<div class="video-grid">
-
-<div class="video-card">
+<div class="video-card landscape">
 <iframe src="https://www.youtube.com/embed/biMbmg67aZM"></iframe>
 <div class="video-info">Gym Video</div>
 </div>
 
-<div class="video-card">
+<div class="video-card landscape">
 <iframe src="https://www.youtube.com/embed/AkIBZf1Cvns"></iframe>
 <div class="video-info">Watch Video</div>
 </div>
 
-<div class="video-card">
+<div class="video-card landscape">
 <iframe src="https://www.youtube.com/embed/EOoVCErJVNU"></iframe>
 <div class="video-info">Car Video</div>
 </div>
 
 </div>
 
-</div>
-
 </section>
-
-<!-- ABOUT -->
 
 <section id="about">
 
 <h2 class="section-title">About Me</h2>
 
-<p>Hi I'm <b>Lokesh Shakya</b> — a Delhi-based Video Editor & Graphic Designer creating modern social media content.</p>
+<p>
+Hi I'm <b>Lokesh Shakya</b>, a Delhi-based visual designer specializing in 
+high-impact social media graphics and fast-paced video edits.  
+I focus on modern content design, motion driven storytelling and 
+clean visuals that help creators and brands stand out online.
+</p>
 
 <div class="about-grid">
 
 <div class="about-card">
 <h3>Experience</h3>
-<p>Freelance fresher working on creative projects.</p>
+<p>Freelance designer working with creators & brands.</p>
 </div>
 
 <div class="about-card">
@@ -560,21 +500,32 @@ PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •
 
 </section>
 
-<!-- CONTACT -->
-
 <section id="contact">
 
-<h2 class="section-title">Contact</h2>
+<h2 class="section-title">Let's Work Together</h2>
 
-<div class="contact-links">
+<div class="contact-card">
 
-<a href="mailto:zxlokesh739@gmail.com">zxlokesh739@gmail.com</a>
-<a href="https://instagram.com/mr.lokesh_28">@mr.lokesh_28</a>
-<a href="https://instagram.com/pixelsbylokesh">@pixelsbylokesh</a>
+<p>If you need video editing or social media design for your brand — feel free to reach out.</p>
+
+<div class="contact-buttons">
+
+<a href="mailto:zxlokesh739@gmail.com" class="contact-btn">Email</a>
+<a href="https://instagram.com/mr.lokesh_28" class="contact-btn">Personal Instagram</a>
+<a href="https://instagram.com/pixelsbylokesh" class="contact-btn">Design Instagram</a>
+
+</div>
 
 </div>
 
 </section>
+
+<div id="progress">
+<svg width="70" height="70">
+<circle cx="35" cy="35" r="30" stroke="#4ade80" stroke-width="3" fill="none"/>
+</svg>
+<span class="arrow">↓</span>
+</div>
 
 <script>
 
@@ -583,68 +534,55 @@ PORTFOLIO • LOKESH SHAKYA • VIDEO EDITOR • GRAPHICS •
 window.addEventListener('load',()=>{
 setTimeout(()=>{
 document.getElementById('loader').style.display='none'
-},1200)
+},1600)
 })
 
-/* CURSOR */
+/* NAV ACTIVE */
 
-const cursor=document.getElementById("cursor")
+const sections=document.querySelectorAll("section")
+const navLinks=document.querySelectorAll(".nav-links a")
 
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px"
-cursor.style.top=e.clientY+"px"
-})
+window.addEventListener("scroll",()=>{
 
-/* PARTICLES */
+let current=""
 
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
+sections.forEach(sec=>{
+const top=window.scrollY
+const offset=sec.offsetTop-200
+const height=sec.offsetHeight
+const id=sec.getAttribute("id")
 
-function resize(){
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
+if(top>=offset && top<offset+height){
+current=id
 }
-
-resize()
-
-window.addEventListener("resize",resize)
-
-const particles=[]
-
-for(let i=0;i<60;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-vx:(Math.random()-0.5)*0.3,
-vy:(Math.random()-0.5)*0.3
 })
+
+navLinks.forEach(link=>{
+link.classList.remove("active")
+if(link.getAttribute("href")=="#"+current){
+link.classList.add("active")
 }
-
-function animateParticles(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-
-p.x+=p.vx
-p.y+=p.vy
-
-if(p.x<0||p.x>canvas.width)p.vx*=-1
-if(p.y<0||p.y>canvas.height)p.vy*=-1
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fillStyle="rgba(74,222,128,0.4)"
-ctx.fill()
+})
 
 })
 
-requestAnimationFrame(animateParticles)
+/* SCROLL PROGRESS */
 
-}
+const progress=document.querySelector("#progress circle")
 
-animateParticles()
+window.addEventListener("scroll",()=>{
+
+const height=document.documentElement.scrollHeight-window.innerHeight
+const scrolled=window.scrollY
+
+const percent=scrolled/height
+
+const dash=188-(188*percent)
+
+progress.style.strokeDasharray="188"
+progress.style.strokeDashoffset=dash
+
+})
 
 </script>
 
