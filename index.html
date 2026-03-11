@@ -1,385 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Lokesh Shakya — Creative Portfolio</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
-
 <style>
-
-/* RESET */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#000;color:#fff;overflow-x:hidden;cursor:none;}
+.cursor-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;position:fixed;pointer-events:none;box-shadow:0 0 10px #4ade80;z-index:9999;}
+html{scroll-behavior:smooth;}
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;}
+#loader{position:fixed;width:100%;height:100vh;background:#000;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;}
+.loader-name{font-size:48px;letter-spacing:6px;font-weight:800;font-family:'Space Grotesk',sans-serif;animation:reveal 1.2s ease forwards;}
+.loader-role{margin-top:12px;color:#4ade80;letter-spacing:3px;opacity:0;animation:fadeIn 1.6s forwards;animation-delay:.6s;}
+@keyframes reveal{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{to{opacity:1}}
+.cursor{width:18px;height:18px;border:2px solid #4ade80;border-radius:50%;position:fixed;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;}
+nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:rgba(0,0,0,.45);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);z-index:1000;}
+.logo{font-weight:700;font-family:'Space Grotesk',sans-serif;}
+.nav-links{display:flex;gap:35px;list-style:none;}
+.nav-links a{color:#ddd;text-decoration:none;font-size:14px;padding:6px 12px;border-radius:30px;transition:.3s;}
+.nav-links a.active{background:#fff;color:#000;box-shadow:0 0 12px rgba(255,255,255,0.5);}
+.hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;position:relative;background:#000;overflow:hidden;}
+.hero::before{content:"";position:absolute;width:500px;height:500px;background:#4ade80;filter:blur(160px);opacity:.2;animation:float 8s infinite alternate;}
+@keyframes float{0%{transform:translate(-120px,-80px)}100%{transform:translate(120px,80px)}}
+.hero h1{font-size:72px;margin-bottom:20px;}
+.highlight{color:#4ade80;}
+#role-text{display:inline-block;}
+.role-in{animation:slideDown 0.7s cubic-bezier(0.16,1,0.3,1) both;}
+.role-out{animation:slideDownOut 0.45s cubic-bezier(0.4,0,1,1) forwards;}
+@keyframes slideDown{
+  0%{opacity:0;transform:translateY(-36px);}
+  100%{opacity:1;transform:translateY(0);}
 }
-
-body{
-font-family:'Inter',sans-serif;
-background:#0b0b0b;
-color:#fff;
-overflow-x:hidden;
-cursor:none;
+@keyframes slideDownOut{
+  0%{opacity:1;transform:translateY(0);}
+  100%{opacity:0;transform:translateY(36px);}
 }
-
-html{
-scroll-behavior:smooth;
-}
-
-/* PARTICLES */
-
-#particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-2;
-}
-
-/* LOADER */
-
-#loader{
-position:fixed;
-width:100%;
-height:100vh;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;
-}
-
-.loader-name{
-font-size:48px;
-letter-spacing:6px;
-font-weight:800;
-font-family:'Space Grotesk',sans-serif;
-animation:reveal 1.2s ease forwards;
-}
-
-.loader-role{
-margin-top:12px;
-color:#4ade80;
-letter-spacing:3px;
-opacity:0;
-animation:fadeIn 1.6s forwards;
-animation-delay:.6s;
-}
-
-@keyframes reveal{
-0%{opacity:0;transform:translateY(30px)}
-100%{opacity:1;transform:translateY(0)}
-}
-
-@keyframes fadeIn{
-to{opacity:1}
-}
-
-/* CURSOR */
-
-.cursor{
-width:18px;
-height:18px;
-border:2px solid #4ade80;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:999;
-}
-
-/* TRAIL */
-
-.cursor-dot{
-width:6px;
-height:6px;
-background:#4ade80;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-box-shadow:0 0 10px #4ade80;
-z-index:999;
-}
-
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:rgba(0,0,0,.45);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,0.06);
-z-index:1000;
-}
-
-.logo{
-font-weight:700;
-font-family:'Space Grotesk',sans-serif;
-}
-
-.nav-links{
-display:flex;
-gap:35px;
-list-style:none;
-}
-
-.nav-links a{
-color:#ddd;
-text-decoration:none;
-font-size:14px;
-padding:6px 12px;
-border-radius:30px;
-transition:.3s;
-}
-
-.nav-links a.active{
-background:#fff;
-color:#000;
-box-shadow:0 0 12px rgba(255,255,255,0.5);
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-position:relative;
-background:#000;
-overflow:hidden;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-width:500px;
-height:500px;
-background:#4ade80;
-filter:blur(160px);
-opacity:.2;
-animation:float 8s infinite alternate;
-}
-
-@keyframes float{
-0%{transform:translate(-120px,-80px)}
-100%{transform:translate(120px,80px)}
-}
-
-.hero h1{
-font-size:72px;
-margin-bottom:20px;
-}
-
-.highlight{
-color:#4ade80;
-}
-
-.hero-buttons{
-margin-top:30px;
-display:flex;
-gap:20px;
-justify-content:center;
-}
-
-.btn{
-padding:14px 28px;
-border-radius:8px;
-text-decoration:none;
-font-size:14px;
-}
-
-.btn-primary{
-background:#4ade80;
-color:#000;
-}
-
-.btn-outline{
-border:1px solid #4ade80;
-color:#4ade80;
-}
-
-/* SECTION */
-
-section{
-padding:120px 8%;
-}
-
-.section-title{
-font-size:44px;
-margin-bottom:30px;
-font-family:'Poppins',sans-serif;
-}
-
-/* GRAPHICS BENTO GRID */
-
+.hero-buttons{margin-top:30px;display:flex;gap:20px;justify-content:center;}
+.btn{padding:14px 28px;border-radius:8px;text-decoration:none;font-size:14px;}
+.btn-primary{background:#4ade80;color:#000;}
+.btn-outline{border:1px solid #4ade80;color:#4ade80;}
+section{padding:120px 8%;}
+.section-title{font-size:44px;margin-bottom:30px;font-family:'Poppins',sans-serif;}
 .graphics-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-grid-auto-rows:220px;
-gap:20px;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:160px;
+  gap:14px;
 }
-
 .graphic-item{
-overflow:hidden;
-border-radius:16px;
-box-shadow:0 10px 40px rgba(0,0,0,.5);
+  overflow:hidden;
+  border-radius:14px;
+  box-shadow:0 8px 30px rgba(0,0,0,.6);
+  background:#111;
 }
-
 .graphic-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.4s;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s ease;
+}
+.graphic-item:hover img{transform:scale(1.08);}
+
+/* 2 landscape — span 3 cols, 1 row */
+.graphic-item.land{grid-column:span 3;grid-row:span 1;}
+
+/* portrait — span 2 cols, 2 rows */
+.graphic-item.port{grid-column:span 2;grid-row:span 2;}
+
+/* some portrait take 1 col wide but taller */
+.graphic-item.port-sm{grid-column:span 1;grid-row:span 2;}
+
+/* wide accent */
+.graphic-item.wide{grid-column:span 2;grid-row:span 1;}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+.video-card{background:#111;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.video-card.landscape iframe{height:260px;}
+.video-card.portrait iframe{height:420px;}
+.video-card iframe{width:100%;border:none;}
+.video-info{padding:15px;}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px;}
+.about-card{padding:28px;border-radius:18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);transition:.4s;}
+.about-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,255,140,0.2);}
+.contact-card{max-width:600px;margin:auto;padding:40px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);text-align:center;}
+.contact-buttons{margin-top:25px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+.contact-btn{padding:12px 22px;border-radius:30px;border:1px solid #4ade80;color:#4ade80;text-decoration:none;transition:.3s;}
+.contact-btn:hover{background:#4ade80;color:#000;}
+#progress{position:fixed;right:30px;bottom:30px;width:70px;height:70px;display:flex;justify-content:center;align-items:center;border-radius:50%;background:#111;}
+#progress svg{transform:rotate(-90deg);}
+.arrow{position:absolute;font-size:20px;color:#4ade80;}
+.tape{width:100%;background:#000;overflow:hidden;white-space:nowrap;padding:12px 0;display:flex;align-items:center;margin:60px 0 8px 0;transform:rotate(-2deg);scale:1.05;}
+.tape p{display:inline-block;font-size:22px;font-weight:bold;margin:0;color:#22c55e;font-family:'Poppins',sans-serif;text-shadow:0 0 10px #22c55e, 0 0 22px #22c55e88;animation:tapeMove 14s linear infinite;}
+.tape2{width:100%;background:#000;overflow:hidden;white-space:nowrap;padding:12px 0;display:flex;align-items:center;margin:8px 0 60px 0;transform:rotate(-3.5deg);scale:1.05;opacity:0.65;filter:blur(1.5px);}
+.tape2 p{display:inline-block;font-size:22px;font-weight:bold;margin:0;color:#22c55e;font-family:'Poppins',sans-serif;text-shadow:0 0 10px #22c55e, 0 0 22px #22c55e88;animation:tapeMove2 14s linear infinite;}
+@keyframes tapeMove{0%{transform:translateX(100vw);}71%{transform:translateX(-100%);}71.01%{transform:translateX(100vw);}100%{transform:translateX(100vw);}}
+@keyframes tapeMove2{0%{transform:translateX(-100%);}71%{transform:translateX(100vw);}71.01%{transform:translateX(-100%);}100%{transform:translateX(-100%);}}
+
+/* 3D FLOATING ELEMENTS */
+.hero-3d-container{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
 }
 
-.graphic-item:hover img{
-transform:scale(1.1);
+.float-el{
+  position:absolute;
+  transform-style:preserve-3d;
+  will-change:transform;
+  opacity:0;
+  transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  pointer-events:none;
 }
 
-.graphic-item:nth-child(1){
-grid-column:span 2;
-grid-row:span 2;
+.float-el.near{
+  opacity:1;
+  transform:scale(1.2);
+  filter:drop-shadow(0 0 18px #4ade80cc);
 }
 
-.graphic-item:nth-child(4){
-grid-column:span 2;
+/* Pen tool / vector node */
+.el-pen{width:52px;height:52px;top:14%;left:8%;animation:floatA 9s ease-in-out infinite;}
+.el-pen svg{filter:drop-shadow(0 0 12px #4ade8088);}
+
+/* Play button - video editor */
+
+
+/* Color palette */
+
+
+/* Film strip */
+
+
+/* Bezier curve / motion path */
+
+
+@keyframes floatA{
+  0%  {transform:translateY(0px)   rotateY(0deg)   rotateZ(0deg);}
+  33% {transform:translateY(-22px) rotateY(25deg)  rotateZ(5deg);}
+  66% {transform:translateY(10px)  rotateY(-15deg) rotateZ(-4deg);}
+  100%{transform:translateY(0px)   rotateY(0deg)   rotateZ(0deg);}
+}
+@keyframes floatB{
+  0%  {transform:translateY(0px)   rotateX(0deg)   rotateZ(0deg);}
+  40% {transform:translateY(18px)  rotateX(20deg)  rotateZ(-6deg);}
+  70% {transform:translateY(-14px) rotateX(-10deg) rotateZ(4deg);}
+  100%{transform:translateY(0px)   rotateX(0deg)   rotateZ(0deg);}
+}
+@keyframes floatC{
+  0%  {transform:translateY(0px)   rotateZ(0deg)  rotateY(0deg);}
+  35% {transform:translateY(-18px) rotateZ(8deg)  rotateY(20deg);}
+  65% {transform:translateY(12px)  rotateZ(-5deg) rotateY(-18deg);}
+  100%{transform:translateY(0px)   rotateZ(0deg)  rotateY(0deg);}
+}
+@keyframes floatD{
+  0%  {transform:translateY(0px)  rotateX(0deg)  rotateZ(0deg);}
+  30% {transform:translateY(20px) rotateX(-18deg) rotateZ(6deg);}
+  60% {transform:translateY(-16px)rotateX(12deg) rotateZ(-5deg);}
+  100%{transform:translateY(0px)  rotateX(0deg)  rotateZ(0deg);}
+}
+@keyframes floatE{
+  0%  {transform:translateX(0px)  translateY(0px)  rotateZ(0deg);}
+  50% {transform:translateX(20px) translateY(-12px) rotateZ(5deg);}
+  100%{transform:translateX(0px)  translateY(0px)  rotateZ(0deg);}
 }
 
-/* VIDEO GRID */
 
-.video-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
 
-.video-card{
-background:#111;
-border-radius:16px;
-overflow:hidden;
-box-shadow:0 10px 40px rgba(0,0,0,.6);
-}
 
-.video-card.landscape iframe{
-height:260px;
-}
 
-.video-card.portrait iframe{
-height:420px;
-}
 
-.video-card iframe{
-width:100%;
-border:none;
-}
 
-.video-info{
-padding:15px;
-}
+.el-waveform{width:68px;height:30px;top:72%;left:38%;animation:floatC 9s ease-in-out infinite;}
+.el-waveform svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-/* ABOUT */
 
-.about-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-margin-top:40px;
-}
 
-.about-card{
-padding:28px;
-border-radius:18px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.12);
-backdrop-filter:blur(20px);
-transition:.4s;
-}
 
-.about-card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,255,140,0.2);
-}
 
-/* CONTACT */
+.el-lasso{width:50px;height:50px;top:40%;right:20%;animation:floatA 10s ease-in-out infinite;}
+.el-lasso svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-.contact-card{
-max-width:600px;
-margin:auto;
-padding:40px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-text-align:center;
-}
+.el-crop{width:34px;height:34px;top:20%;right:12%;animation:floatC 8s ease-in-out infinite;}
+.el-crop svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-.contact-buttons{
-margin-top:25px;
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-}
+.el-eyedrop{width:38px;height:38px;top:64%;right:8%;animation:floatD 13s ease-in-out infinite;}
+.el-eyedrop svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-.contact-btn{
-padding:12px 22px;
-border-radius:30px;
-border:1px solid #4ade80;
-color:#4ade80;
-text-decoration:none;
-transition:.3s;
-}
+.el-brush{width:46px;height:46px;top:58%;left:6%;animation:floatB 11s ease-in-out infinite;}
+.el-brush svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-.contact-btn:hover{
-background:#4ade80;
-color:#000;
-}
+.el-magicwand{width:44px;height:44px;top:30%;left:62%;animation:floatE 14s ease-in-out infinite;}
+.el-magicwand svg{filter:drop-shadow(0 0 12px #4ade8088);}
 
-/* SCROLL PROGRESS */
-
-#progress{
-position:fixed;
-right:30px;
-bottom:30px;
-width:70px;
-height:70px;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-background:#111;
-}
-
-#progress svg{
-transform:rotate(-90deg);
-}
-
-.arrow{
-position:absolute;
-font-size:20px;
-color:#4ade80;
-}
-
+.el-timeline{width:72px;height:28px;top:48%;left:24%;animation:floatB 12s ease-in-out infinite;}
+.el-timeline svg{filter:drop-shadow(0 0 10px #4ade8088);}
 </style>
-
 </head>
-
-<body>
+<body style="position:relative;">
 
 <canvas id="particles"></canvas>
 
@@ -391,139 +212,384 @@ color:#4ade80;
 <div class="cursor" id="cursor"></div>
 
 <nav>
-
 <div class="logo">Lokesh Shakya</div>
-
 <ul class="nav-links">
 <li><a href="#graphics">Graphics</a></li>
 <li><a href="#videos">Videos</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-
 </nav>
 
-<!-- HERO / SECTIONS SAME AS YOUR CODE -->
+<section class="hero">
+<div style="position:relative;z-index:2;">
+<h1>Creative</h1>
+<h1><span class="highlight" id="role-text">Visual Designer</span></h1>
+<p>I design graphics and craft engaging videos for creators & brands.</p>
+<div class="hero-buttons">
+<a href="#videos" class="btn btn-primary">View Work</a>
+<a href="#contact" class="btn btn-outline">Hire Me</a>
+</div>
+</div>
 
-<!-- (मैंने बीच का content change नहीं किया है) -->
+<div class="hero-3d-container">
 
-<script>
+  <!-- Pen Tool (Vector/Design) -->
+  <div class="float-el el-pen">
+    <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Pen nib body -->
+      <path d="M27 6 L38 22 L27 48 L16 22 Z" fill="#4ade8022" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Nib tip line -->
+      <line x1="27" y1="34" x2="27" y2="48" stroke="#4ade80" stroke-width="2.5"/>
+      <!-- Nib split -->
+      <line x1="27" y1="28" x2="27" y2="42" stroke="#0b0b0b" stroke-width="1.2"/>
+      <!-- Top cap -->
+      <rect x="20" y="4" width="14" height="7" rx="3" fill="#4ade8033" stroke="#4ade80" stroke-width="1.8"/>
+      <!-- Anchor point at tip -->
+      <rect x="24" y="45" width="6" height="6" rx="1.5" fill="#4ade80" opacity="0.9" transform="rotate(45 27 48)"/>
+      <!-- Left handle -->
+      <line x1="10" y1="22" x2="20" y2="22" stroke="#4ade8077" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <circle cx="10" cy="22" r="3" stroke="#4ade80" stroke-width="1.5" fill="none"/>
+      <!-- Right handle -->
+      <line x1="34" y1="22" x2="44" y2="22" stroke="#4ade8077" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <circle cx="44" cy="22" r="3" stroke="#4ade80" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Waveform (Audio/Video) -->
+  <div class="float-el el-waveform">
+    <svg viewBox="0 0 72 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4"  y1="16" x2="4"  y2="16" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="12" y1="10" x2="12" y2="22" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="4"  x2="20" y2="28" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="28" y1="8"  x2="28" y2="24" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="36" y1="2"  x2="36" y2="30" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="44" y1="8"  x2="44" y2="24" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="52" y1="4"  x2="52" y2="28" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="60" y1="10" x2="60" y2="22" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="68" y1="16" x2="68" y2="16" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Lasso Tool -->
+  <div class="float-el el-lasso">
+    <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23 8 C34 6 40 14 38 24 C36 34 26 40 18 36 C10 32 8 22 12 14 C15 9 19 7 23 8 Z" stroke="#4ade80" stroke-width="2" stroke-dasharray="4 3" fill="#4ade8010"/>
+      <path d="M18 36 L14 42" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Crop Tool -->
+  <div class="float-el el-crop">
+    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="10" x2="4" y2="34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="4" y1="34" x2="28" y2="34" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="4" x2="34" y2="4" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+      <line x1="34" y1="4" x2="34" y2="28" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+      <rect x="10" y="10" width="24" height="24" stroke="#4ade8055" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Eyedropper -->
+  <div class="float-el el-eyedrop">
+    <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22 4 C26 4 30 8 28 12 L16 24 L10 30 L8 28 L14 22 L6 14 C4 10 8 4 12 4 Z" fill="#4ade8020" stroke="#4ade80" stroke-width="1.8" stroke-linejoin="round"/>
+      <line x1="14" y1="20" x2="20" y2="14" stroke="#4ade80" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="9" cy="29" r="3" stroke="#4ade80" stroke-width="1.5" fill="#4ade8040"/>
+    </svg>
+  </div>
+
+  <!-- Brush Tool -->
+  <div class="float-el el-brush">
+    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 6 L38 14 L16 36 C14 38 10 39 8 37 C6 35 7 31 9 29 Z" fill="#4ade8020" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M30 6 L34 2 L42 10 L38 14 Z" fill="#4ade8040" stroke="#4ade80" stroke-width="1.5"/>
+      <path d="M9 29 C7 33 7 37 9 38 C7 38 5 36 8 37" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="9" cy="37" rx="4" ry="3" fill="#4ade8055" stroke="#4ade80" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <!-- Magic Wand -->
+  <div class="float-el el-magicwand">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="8" y1="32" x2="28" y2="12" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="4"  x2="20" y2="8"  stroke="#4ade80" stroke-width="2" stroke-linecap="round"/>
+      <line x1="28" y1="12" x2="36" y2="8"  stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+      <line x1="28" y1="12" x2="34" y2="16" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+      <line x1="28" y1="12" x2="28" y2="4"  stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="28" cy="12" r="4" fill="#4ade8030" stroke="#4ade80" stroke-width="1.5"/>
+      <line x1="4"  y1="20" x2="8"  y2="20" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      <line x1="4"  y1="28" x2="8"  y2="26" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+
+  <!-- Timeline (Video/Motion Editing) -->
+  <div class="float-el el-timeline">
+    <svg viewBox="0 0 72 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Track bg -->
+      <rect x="2" y="8"  width="68" height="5" rx="2" fill="#4ade8018" stroke="#4ade80" stroke-width="1.2"/>
+      <rect x="2" y="16" width="68" height="5" rx="2" fill="#4ade8012" stroke="#4ade8066" stroke-width="1"/>
+      <!-- Clips on track 1 -->
+      <rect x="6"  y="8" width="18" height="5" rx="1.5" fill="#4ade8044" stroke="#4ade80" stroke-width="1"/>
+      <rect x="28" y="8" width="12" height="5" rx="1.5" fill="#4ade8033" stroke="#4ade80" stroke-width="1"/>
+      <rect x="44" y="8" width="22" height="5" rx="1.5" fill="#4ade8044" stroke="#4ade80" stroke-width="1"/>
+      <!-- Clips on track 2 -->
+      <rect x="10" y="16" width="22" height="5" rx="1.5" fill="#4ade8022" stroke="#4ade8077" stroke-width="1"/>
+      <rect x="36" y="16" width="16" height="5" rx="1.5" fill="#4ade8022" stroke="#4ade8077" stroke-width="1"/>
+      <!-- Playhead -->
+      <line x1="32" y1="2" x2="32" y2="26" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round"/>
+      <polygon points="29,2 35,2 32,6" fill="#4ade80"/>
+    </svg>
+  </div>
+
+</div>
+</section>
+
+<section id="graphics">
+<h2 class="section-title">My Design Work</h2>
+<div class="graphics-grid">
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a"></div>
+<div class="graphic-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766"></div>
+</div>
+</section>
+
+<div class="tape">
+<p><i> PORTFOLIO • PORTFOLIO • PORTFOLIO </i></p>
+</div>
+
+<div class="tape2">
+<p><i> PORTFOLIO • PORTFOLIO • PORTFOLIO </i></p>
+</div>
+
+<section id="videos">
+<h2 class="section-title">Video Projects</h2>
+<div class="video-grid">
+<div class="video-card landscape">
+<iframe src="https://www.youtube.com/embed/FUHYCIQrm2s"></iframe>
+<div class="video-info">Behind The Scene Edit</div>
+</div>
+<div class="video-card portrait">
+<iframe src="https://www.youtube.com/embed/OUkAhlsFpuo"></iframe>
+<div class="video-info">UGC</div>
+</div>
+<div class="video-card portrait">
+<iframe src="https://www.youtube.com/embed/Eqx0fdQ47f0"></iframe>
+<div class="video-info">UGC</div>
+</div>
+<div class="video-card landscape">
+<iframe src="https://www.youtube.com/embed/biMbmg67aZM"></iframe>
+<div class="video-info">Gym Video</div>
+</div>
+<div class="video-card landscape">
+<iframe src="https://www.youtube.com/embed/AkIBZf1Cvns"></iframe>
+<div class="video-info">Watch Video</div>
+</div>
+<div class="video-card landscape">
+<iframe src="https://www.youtube.com/embed/EOoVCErJVNU"></iframe>
+<div class="video-info">Car Video</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<p>Hi I'm <b>Lokesh Shakya</b>, a Delhi-based visual designer specializing in high-impact social media graphics and fast-paced video edits. I focus on modern content design, motion driven storytelling and clean visuals that help creators and brands stand out online.</p>
+<div class="about-grid">
+<div class="about-card"><h3>Experience</h3><p>Freelance designer working with creators & brands.</p></div>
+<div class="about-card"><h3>Software</h3><p>Premiere Pro • After Effects • Photoshop • Illustrator</p></div>
+<div class="about-card"><h3>Clients</h3><p>Amaryllis • Bonjour • Marine Fitness</p></div>
+<div class="about-card"><h3>Specialty</h3><p>UGC Reels • Fast Sync • Wedding Videos</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Let's Work Together</h2>
+<div class="contact-card">
+<p>If you need video editing or social media design for your brand — feel free to reach out.</p>
+<div class="contact-buttons">
+<a href="/cdn-cgi/l/email-protection#f78d8f9b989c92849fc0c4ceb7909a969e9bd994989a" class="contact-btn">Email</a>
+<a href="https://instagram.com/mr.lokesh_28" class="contact-btn">Personal Instagram</a>
+<a href="https://instagram.com/pixelsbylokesh" class="contact-btn">Design Instagram</a>
+</div>
+</div>
+</section>
+
+<div id="progress">
+<svg width="70" height="70">
+<circle cx="35" cy="35" r="30" stroke="#4ade80" stroke-width="3" fill="none"/>
+</svg>
+<span class="arrow">↓</span>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+/* PARTICLES */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+const COUNT = 55;
+
+for(let i = 0; i < COUNT; i++){
+  particles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.4 + 0.8,
+    dx: (Math.random() - 0.5) * 0.18,
+    dy: (Math.random() - 0.5) * 0.18,
+    opacity: Math.random() * 0.5 + 0.2
+  });
+}
+
+function drawParticles(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const scrollY = window.scrollY;
+  ctx.save();
+  ctx.translate(0, -(scrollY % canvas.height));
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(74, 222, 128, ${p.opacity})`;
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x < 0) p.x = window.innerWidth;
+    if(p.x > window.innerWidth) p.x = 0;
+    if(p.y < 0) p.y = window.innerHeight;
+    if(p.y > window.innerHeight) p.y = 0;
+  });
+  ctx.restore();
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
 /* LOADER */
-
 window.addEventListener('load',()=>{
-setTimeout(()=>{
-document.getElementById('loader').style.display='none'
-},1600)
+setTimeout(()=>{ document.getElementById('loader').style.display='none' },1600)
 })
 
 /* NAV ACTIVE */
-
 const sections=document.querySelectorAll("section")
 const navLinks=document.querySelectorAll(".nav-links a")
-
 window.addEventListener("scroll",()=>{
-
 let current=""
-
 sections.forEach(sec=>{
 const top=window.scrollY
 const offset=sec.offsetTop-200
 const height=sec.offsetHeight
 const id=sec.getAttribute("id")
-
-if(top>=offset && top<offset+height){
-current=id
-}
+if(top>=offset && top<offset+height){ current=id }
 })
-
 navLinks.forEach(link=>{
 link.classList.remove("active")
-if(link.getAttribute("href")=="#"+current){
-link.classList.add("active")
-}
+if(link.getAttribute("href")=="#"+current){ link.classList.add("active") }
 })
-
 })
 
 /* SCROLL PROGRESS */
-
 const progress=document.querySelector("#progress circle")
-
 window.addEventListener("scroll",()=>{
-
 const height=document.documentElement.scrollHeight-window.innerHeight
 const scrolled=window.scrollY
-
 const percent=scrolled/height
-
 const dash=188-(188*percent)
-
 progress.style.strokeDasharray="188"
 progress.style.strokeDashoffset=dash
-
 })
 
+/* ROLE TEXT CYCLING */
+const roles=['Visual Designer','Graphic Designer','Video Editor','Motion Designer'];
+let roleIndex=0;
+const roleEl=document.getElementById('role-text');
+roleEl.classList.add('role-in');
+
+function cycleRole(){
+  roleEl.classList.remove('role-in');
+  roleEl.classList.add('role-out');
+  setTimeout(()=>{
+    roleIndex=(roleIndex+1)%roles.length;
+    roleEl.textContent=roles[roleIndex];
+    roleEl.classList.remove('role-out');
+    void roleEl.offsetWidth;
+    roleEl.classList.add('role-in');
+  },400);
+}
+setInterval(cycleRole,2500);
+
 /* CURSOR */
-
 const cursor=document.getElementById("cursor")
-
 document.addEventListener("mousemove",(e)=>{
-
 cursor.style.left=e.clientX+"px"
 cursor.style.top=e.clientY+"px"
-
 })
 
 /* TRAIL */
-
 const dots=[]
-
 for(let i=0;i<16;i++){
-
 const dot=document.createElement("div")
 dot.className="cursor-dot"
-
 document.body.appendChild(dot)
-
 dots.push(dot)
-
 }
-
 let mouseX=0
 let mouseY=0
-
 window.addEventListener("mousemove",(e)=>{
-
 mouseX=e.clientX
 mouseY=e.clientY
-
 })
-
 function animateTrail(){
-
 let x=mouseX
 let y=mouseY
-
 dots.forEach((dot,i)=>{
-
 dot.style.left=x+"px"
 dot.style.top=y+"px"
-
-const next=dots[i+1] || dots[0]
-
-x += (parseFloat(next.style.left || x)-x)*0.3
-y += (parseFloat(next.style.top || y)-y)*0.3
-
+const next=dots[i+1]||dots[0]
+x+=(parseFloat(next.style.left||x)-x)*0.3
+y+=(parseFloat(next.style.top||y)-y)*0.3
 })
-
 requestAnimationFrame(animateTrail)
-
 }
-
 animateTrail()
 
-</script>
 
-</body>
-</html>
+/* FLOATING ELEMENTS PROXIMITY */
+const floatEls = document.querySelectorAll('.float-el');
+const heroSection = document.querySelector('.hero');
+
+document.addEventListener('mousemove', (e) => {
+  const heroRect = heroSection.getBoundingClientRect();
+  // only active inside hero
+  if(e.clientY < heroRect.top || e.clientY > heroRect.bottom) {
+    floatEls.forEach(el => el.classList.remove('near'));
+    return;
+  }
+
+  floatEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+    if(dist < 120){
+      el.classList.add('near');
+    } else {
+      el.classList.remove('near');
+    }
+  });
+});
+
+// hide all when mou
