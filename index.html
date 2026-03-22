@@ -474,51 +474,57 @@
     .graphics-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 10px;
+      gap: 6px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .graphic-item {
       overflow: hidden;
-      border-radius: 14px;
+      border-radius: 12px;
       background: #111;
     }
 
     .graphic-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       display: block;
+      background: #111;
       transition: .5s ease;
     }
 
-    .graphic-item:hover img { transform: scale(1.05); }
+    .graphic-item:hover img { transform: scale(1.04); }
 
-    /* Row 1: img01 landscape | img02 portrait */
+    /* img01: 1200x853 landscape → col 1-9, ratio 3:2 */
     .gi-01 { grid-column: 1 / 9; aspect-ratio: 3 / 2; }
-    .gi-02 { grid-column: 9 / 13; aspect-ratio: 4 / 5; }
+    /* img02: 800x1132 portrait → col 9-13, ratio 4:5.6 ≈ 5:7 */
+    .gi-02 { grid-column: 9 / 13; aspect-ratio: 5 / 7; }
 
-    /* Row 2: img03 portrait | img04 landscape | img05 portrait */
+    /* img03: 800x1000 portrait → col 1-4 */
     .gi-03 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
+    /* img04: 1200x675 landscape → col 4-10, ratio 16:9 */
     .gi-04 { grid-column: 4 / 10; aspect-ratio: 16 / 9; }
-    .gi-05 { grid-column: 10 / 13; aspect-ratio: 4 / 5; }
+    /* img05: 800x1132 portrait → col 10-13 */
+    .gi-05 { grid-column: 10 / 13; aspect-ratio: 5 / 7; }
 
-    /* Row 3: 4 equal portraits */
+    /* img06-09: all portrait 4:5, 4 equal cols */
     .gi-06 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
     .gi-07 { grid-column: 4 / 7; aspect-ratio: 4 / 5; }
     .gi-08 { grid-column: 7 / 10; aspect-ratio: 4 / 5; }
     .gi-09 { grid-column: 10 / 13; aspect-ratio: 4 / 5; }
 
-    /* Row 4: 4 equal */
+    /* img10-13: 4 equal cols */
     .gi-10 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
-    .gi-11 { grid-column: 4 / 7; aspect-ratio: 4 / 5; }
+    .gi-11 { grid-column: 4 / 7; aspect-ratio: 5 / 7; }
     .gi-12 { grid-column: 7 / 10; aspect-ratio: 1 / 1; }
     .gi-13 { grid-column: 10 / 13; aspect-ratio: 4 / 5; }
 
-    /* Row 5: 3 equal tall portraits */
-    .gi-14 { grid-column: 1 / 5; aspect-ratio: 4 / 5; }
-    .gi-15 { grid-column: 5 / 9; aspect-ratio: 4 / 5; }
-    .gi-16 { grid-column: 9 / 13; aspect-ratio: 4 / 5; }
+    /* img14-16: 3 cols last row */
+    .gi-14 { grid-column: 1 / 5; aspect-ratio: 5 / 7; }
+    .gi-15 { grid-column: 5 / 9; aspect-ratio: 9 / 16; }
+    .gi-16 { grid-column: 9 / 13; aspect-ratio: 4 / 7; }
 
 
 
