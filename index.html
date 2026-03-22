@@ -473,126 +473,41 @@
     .graphics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .graphic-item {
       overflow: hidden;
-      border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, .7);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .6);
       background: #111;
     }
 
     .graphic-item img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
       transition: .5s ease;
     }
 
-
     .graphic-item:hover img {
       transform: scale(1.05);
     }
 
-
-    /* ── LANDSCAPE items → 16:9 ratio (wide design graphics) ── */
-    .gi-l1 {
+    /* ── LANDSCAPE items → 16:9 ── */
+    .gi-l1, .gi-b, .gi-i, .gi-n {
       grid-column: span 2;
       aspect-ratio: 16 / 9;
     }
 
-    .gi-b {
-      grid-column: span 2;
-      aspect-ratio: 16 / 9;
-    }
-
-    .gi-i {
-      grid-column: span 2;
-      aspect-ratio: 16 / 9;
-    }
-
-    .gi-n {
-      grid-column: span 2;
-      aspect-ratio: 16 / 9;
-    }
-
-    /* ── PORTRAIT items → 4:5 ratio (social media / design cards) ── */
-    .gi-l2 {
+    /* ── PORTRAIT items → 1:1 ── */
+    .gi-l2, .gi-a, .gi-c, .gi-d, .gi-e, .gi-f,
+    .gi-g, .gi-h, .gi-j, .gi-k, .gi-l, .gi-m,
+    .gi-o, .gi-p, .gi-q {
       grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-a {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-c {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-d {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-e {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-f {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-g {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-h {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-j {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-k {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-l {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-m {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-o {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-p {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
-    }
-
-    .gi-q {
-      grid-column: span 1;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1;
     }
 
 
