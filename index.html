@@ -470,61 +470,121 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* ── BENTO GRID ── */
     .graphics-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 8px;
-      max-width: 1200px;
-      margin: 0 auto;
+  columns: 4;
+  column-gap: 12px;
+}
+
+.graphic-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+
+.graphic-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  transition: .5s ease;
+}
+
+.graphic-item:hover img { transform: scale(1.05); }
+    /* ── LANDSCAPE items → 16:9 ratio (wide design graphics) ── */
+    .gi-l1 {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
     }
 
-    .graphic-item {
-      overflow: hidden;
-      border-radius: 12px;
-      background: #111;
+    .gi-b {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
     }
 
-    .graphic-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      background: #111;
-      transition: .5s ease;
+    .gi-i {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
     }
 
-    .graphic-item:hover img { transform: scale(1.04); }
+    .gi-n {
+      grid-column: span 2;
+      aspect-ratio: 16 / 9;
+    }
 
-    /* img01: 1200x853 landscape → col 1-9, ratio 3:2 */
-    .gi-01 { grid-column: 1 / 9; aspect-ratio: 3 / 2; }
-    /* img02: 800x1132 portrait → col 9-13, ratio 4:5.6 ≈ 5:7 */
-    .gi-02 { grid-column: 9 / 13; aspect-ratio: 5 / 7; }
+    /* ── PORTRAIT items → 4:5 ratio (social media / design cards) ── */
+    .gi-l2 {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
 
-    /* img03: 800x1000 portrait → col 1-4 */
-    .gi-03 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
-    /* img04: 1200x675 landscape → col 4-10, ratio 16:9 */
-    .gi-04 { grid-column: 4 / 10; aspect-ratio: 16 / 9; }
-    /* img05: 800x1132 portrait → col 10-13 */
-    .gi-05 { grid-column: 10 / 13; aspect-ratio: 5 / 7; }
+    .gi-a {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
 
-    /* img06-09: all portrait 4:5, 4 equal cols */
-    .gi-06 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
-    .gi-07 { grid-column: 4 / 7; aspect-ratio: 4 / 5; }
-    .gi-08 { grid-column: 7 / 10; aspect-ratio: 4 / 5; }
-    .gi-09 { grid-column: 10 / 13; aspect-ratio: 4 / 5; }
+    .gi-c {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
 
-    /* img10-13: 4 equal cols */
-    .gi-10 { grid-column: 1 / 4; aspect-ratio: 4 / 5; }
-    .gi-11 { grid-column: 4 / 7; aspect-ratio: 5 / 7; }
-    .gi-12 { grid-column: 7 / 10; aspect-ratio: 1 / 1; }
-    .gi-13 { grid-column: 10 / 13; aspect-ratio: 4 / 5; }
+    .gi-d {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
 
-    /* img14-16: 3 cols last row */
-    .gi-14 { grid-column: 1 / 5; aspect-ratio: 5 / 7; }
-    .gi-15 { grid-column: 5 / 9; aspect-ratio: 9 / 16; }
-    .gi-16 { grid-column: 9 / 13; aspect-ratio: 4 / 7; }
+    .gi-e {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-f {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-g {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-h {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-j {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-k {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-l {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-m {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-o {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-p {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
+
+    .gi-q {
+      grid-column: span 1;
+      aspect-ratio: 4 / 5;
+    }
 
 
 
@@ -918,14 +978,31 @@
         gap: 8px;
       }
 
-      .gi-01 { grid-column: 1 / 3; aspect-ratio: 16 / 9; }
-      .gi-04 { grid-column: 1 / 3; aspect-ratio: 16 / 9; }
+      .gi-l1,
+      .gi-l2,
+      .gi-b,
+      .gi-e,
+      .gi-i,
+      .gi-m,
+      .gi-p {
+        grid-column: span 2;
+        height: 160px;
+      }
 
-      .gi-02, .gi-03, .gi-05, .gi-06, .gi-07,
-      .gi-08, .gi-09, .gi-10, .gi-11, .gi-12,
-      .gi-13, .gi-14, .gi-15, .gi-16 {
+      .gi-a,
+      .gi-c,
+      .gi-d,
+      .gi-f,
+      .gi-g,
+      .gi-h,
+      .gi-j,
+      .gi-k,
+      .gi-l,
+      .gi-n,
+      .gi-o,
+      .gi-q {
         grid-column: span 1;
-        aspect-ratio: 1 / 1;
+        height: 200px;
       }
 
       .tape p,
@@ -1092,6 +1169,31 @@
       opacity: 1;
     }
 
+    .lb-prev, .lb-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px;
+      opacity: 0.6;
+      transition: 0.3s;
+      user-select: none;
+      z-index: 10000;
+    }
+    .lb-prev:hover, .lb-next:hover {
+      opacity: 1;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lightbox img {
+      transition: transform 0.4s ease;
+    }
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
     .graphic-item {
       cursor: zoom-in;
     }
@@ -1207,22 +1309,59 @@
     <section id="graphics">
       <h2 class="section-title">My Design Work</h2>
       <div class="graphics-grid">
-        <div class="graphic-item gi-01"><img src="https://lokeshakya28.github.io/image_01.jpg" alt=""></div>
-        <div class="graphic-item gi-02"><img src="https://lokeshakya28.github.io/image_02.jpg" alt=""></div>
-        <div class="graphic-item gi-03"><img src="https://lokeshakya28.github.io/image_03.jpg" alt=""></div>
-        <div class="graphic-item gi-04"><img src="https://lokeshakya28.github.io/image_04.jpg" alt=""></div>
-        <div class="graphic-item gi-05"><img src="https://lokeshakya28.github.io/image_05.jpg" alt=""></div>
-        <div class="graphic-item gi-06"><img src="https://lokeshakya28.github.io/image_06.jpg" alt=""></div>
-        <div class="graphic-item gi-07"><img src="https://lokeshakya28.github.io/image_07.jpg" alt=""></div>
-        <div class="graphic-item gi-08"><img src="https://lokeshakya28.github.io/image_08.jpg" alt=""></div>
-        <div class="graphic-item gi-09"><img src="https://lokeshakya28.github.io/image_09.jpg" alt=""></div>
-        <div class="graphic-item gi-10"><img src="https://lokeshakya28.github.io/image_10.jpg" alt=""></div>
-        <div class="graphic-item gi-11"><img src="https://lokeshakya28.github.io/image_11.jpg" alt=""></div>
-        <div class="graphic-item gi-12"><img src="https://lokeshakya28.github.io/image_12.jpg" alt=""></div>
-        <div class="graphic-item gi-13"><img src="https://lokeshakya28.github.io/image_13.jpg" alt=""></div>
-        <div class="graphic-item gi-14"><img src="https://lokeshakya28.github.io/image_14.jpg" alt=""></div>
-        <div class="graphic-item gi-15"><img src="https://lokeshakya28.github.io/image_15.jpg" alt=""></div>
-        <div class="graphic-item gi-16"><img src="https://lokeshakya28.github.io/image_16.jpg" alt=""></div>
+        <div class="graphic-item gi-l1"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_01.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-a"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_02.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-l2"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_03.jpg"
+            alt=""></div>
+
+
+
+        <div class="graphic-item gi-b"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_04.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-c"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_05.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-d"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_06.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-m"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_07.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-e"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_08.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-f"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_09.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-g"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_10.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-h"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_11.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-i"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_12.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-j"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_13.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-k"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_14.jpg"
+            alt=""></div>
+        <div class="graphic-item gi-l"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_15.jpg"
+            alt=""></div>
+
+
+        <div class="graphic-item gi-n"><img
+            src="https://lokeshakya28.github.io/portfolio-images/image_16.jpg"
+            alt=""></div>
       </div>
     </section>
     <div class="tape-wrap">
@@ -1323,6 +1462,12 @@
         </div>
       </div>
     </section>
+    <div class="lightbox" id="lightbox">
+      <span class="lb-close" onclick="closeLB()">×</span>
+      <span class="lb-prev" onclick="prevImg()">❮</span>
+      <img id="lb-img" src="" alt="">
+      <span class="lb-next" onclick="nextImg()">❯</span>
+    </div>
     <div id="progress">
       <svg width="70" height="70">
         <circle cx="35" cy="35" r="30" stroke="#4ade80" stroke-width="3" fill="none" />
@@ -1364,21 +1509,38 @@
     const heroSec = document.querySelector('.hero');
     document.addEventListener('mousemove', (e) => { const heroRect = heroSec.getBoundingClientRect(); if (e.clientY < heroRect.top || e.clientY > heroRect.bottom) { floatEls.forEach(el => el.classList.remove('near')); return; } floatEls.forEach(el => { const rect = el.getBoundingClientRect(); const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2; const dist = Math.hypot(e.clientX - cx, e.clientY - cy); if (dist < 120) { el.classList.add('near'); } else { el.classList.remove('near'); } }); });
 
+    let images = [];
+    let currentIndex = 0;
+    document.querySelectorAll('.graphic-item img').forEach((img, index) => {
+      images.push(img.src);
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        openLB(img.src);
+      });
+    });
+    function openLB(src) {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      lbImg.src = src;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
     function closeLB() {
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
-    document.addEventListener('click', e => {
-      const img = e.target.closest('.graphic-item img');
-      if (!img) return;
-      e.stopPropagation();
-      const lb = document.getElementById('lightbox');
-      const lbImg = document.getElementById('lb-img');
-      if (!lb || !lbImg) return;
-      lbImg.src = img.src;
-      lb.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    function nextImg() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('lb-img').src = images[currentIndex];
+    }
+    function prevImg() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById('lb-img').src = images[currentIndex];
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
     });
   </script>
 </body>
