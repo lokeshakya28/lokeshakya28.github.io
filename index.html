@@ -471,24 +471,53 @@
     }
 
     .graphics-grid {
-  columns: 4;
-  column-gap: 12px;
-}
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
 
-.graphic-item {
-  break-inside: avoid;
-  margin-bottom: 12px;
-}
+    .graphic-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      cursor: zoom-in;
+    }
 
-.graphic-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  display: block;
-  transition: .5s ease;
-}
+    .graphic-item img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.6s ease;
+    }
 
-.graphic-item:hover img { transform: scale(1.05); }
+    .graphic-item::after {
+      content: "View Design";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+    }
+
+    .graphic-item:hover img {
+      transform: scale(1.12);
+      filter: brightness(0.7) blur(2px);
+    }
+
+    .graphic-item:hover::after {
+      opacity: 1;
+    }
     /* ── LANDSCAPE items → 16:9 ratio (wide design graphics) ── */
     .gi-l1 {
       grid-column: span 2;
@@ -1196,9 +1225,6 @@
       transform: scale(1);
     }
 
-    .graphic-item {
-      cursor: zoom-in;
-    }
   </style>
 </head>
 
@@ -1479,7 +1505,6 @@
       <span class="arrow">&#8595;</span>
     </div>
   </div>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
@@ -1542,11 +1567,4 @@
       document.getElementById('lb-img').src = images[currentIndex];
     }
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLB();
-      if (e.key === 'ArrowRight') nextImg();
-      if (e.key === 'ArrowLeft') prevImg();
-    });
-  </script>
-</body>
-
-</html>
+      if (e.ke
