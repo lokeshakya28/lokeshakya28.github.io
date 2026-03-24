@@ -471,53 +471,24 @@
     }
 
     .graphics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
+  columns: 4;
+  column-gap: 12px;
+}
 
-    .graphic-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      cursor: zoom-in;
-    }
+.graphic-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
 
-    .graphic-item img {
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      display: block;
-      object-fit: cover;
-      transition: transform 0.6s ease, filter 0.6s ease;
-    }
+.graphic-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  transition: .5s ease;
+}
 
-    .graphic-item::after {
-      content: "View Design";
-      position: absolute;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 14px;
-      letter-spacing: 2px;
-      font-weight: 600;
-      color: #fff;
-      background: rgba(0,0,0,0.55);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      backdrop-filter: blur(6px);
-      border-radius: 20px;
-    }
-
-    .graphic-item:hover img {
-      transform: scale(1.12);
-      filter: brightness(0.7) blur(2px);
-    }
-
-    .graphic-item:hover::after {
-      opacity: 1;
-    }
+.graphic-item:hover img { transform: scale(1.05); }
     /* ── LANDSCAPE items → 16:9 ratio (wide design graphics) ── */
     .gi-l1 {
       grid-column: span 2;
@@ -1225,6 +1196,9 @@
       transform: scale(1);
     }
 
+    .graphic-item {
+      cursor: zoom-in;
+    }
   </style>
 </head>
 
@@ -1486,7 +1460,7 @@
       <div class="contact-card">
         <p>If you need video editing or social media design for your brand — feel free to reach out.</p>
         <div class="contact-buttons">
-          <a href="mailto:zxlokesh739@gmail.com" class="contact-btn">Email</a>
+          <a href="/cdn-cgi/l/email-protection#096566626c7a61496c71686479656c276a6664" class="contact-btn">Email</a>
           <a href="https://instagram.com/mr.lokesh_28" class="contact-btn" target="_blank">Personal Instagram</a>
           <a href="https://instagram.com/pixelsbylokesh" class="contact-btn" target="_blank">Design Instagram</a>
         </div>
@@ -1505,6 +1479,7 @@
       <span class="arrow">&#8595;</span>
     </div>
   </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
@@ -1515,7 +1490,7 @@
     for (let i = 0; i < 60; i++) { particles.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, r: Math.random() * 1.4 + 0.6, dx: (Math.random() - 0.5) * 0.18, dy: (Math.random() - 0.5) * 0.18, opacity: Math.random() * 0.4 + 0.15 }); }
     function drawParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.closePath(); ctx.fillStyle = 'rgba(74,222,128,' + p.opacity + ')'; ctx.fill(); p.x += p.dx; p.y += p.dy; if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0; if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0; }); requestAnimationFrame(drawParticles); }
     drawParticles();
-    document.addEventListener('DOMContentLoaded', () => { setTimeout(() => { const l = document.getElementById('loader'); l.classList.add('hide'); setTimeout(() => { l.style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 650); }, 1800); });
+    window.addEventListener('load', () => { setTimeout(() => { const l = document.getElementById('loader'); l.classList.add('hide'); setTimeout(() => { l.style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 650); }, 1800); });
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => { let current = ''; sections.forEach(sec => { const top = window.scrollY, offset = sec.offsetTop - 200, height = sec.offsetHeight, id = sec.getAttribute('id'); if (top >= offset && top < offset + height) { current = id; } }); navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); } }); });
@@ -1573,4 +1548,5 @@
     });
   </script>
 </body>
+
 </html>
