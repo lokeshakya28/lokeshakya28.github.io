@@ -682,27 +682,29 @@
     .video-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 28px;
+      align-items: start;
     }
 
     .video-card {
       background: #111;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, .6);
-    }
-
-    .video-card.landscape iframe {
-      height: 260px;
-    }
-
-    .video-card.portrait iframe {
-      height: 420px;
     }
 
     .video-card iframe {
       width: 100%;
+      height: 100%;
       border: none;
+      display: block;
+    }
+
+    .video-card.portrait {
+      aspect-ratio: 9 / 16;
+    }
+
+    .video-card.landscape {
+      aspect-ratio: 16 / 9;
     }
 
     .video-info {
@@ -1375,29 +1377,31 @@
     <section id="videos">
       <h2 class="section-title">Video Projects</h2>
       <div class="video-grid">
-        <div class="video-card landscape"><iframe src="https://www.youtube.com/embed/FUHYCIQrm2s"
-            allowfullscreen></iframe>
-          <div class="video-info">Behind The Scene Edit</div>
-        </div>
-        <div class="video-card portrait"><iframe src="https://www.youtube.com/embed/OUkAhlsFpuo"
-            allowfullscreen></iframe>
+        <!-- TOP ROW: Portrait Videos -->
+        <div class="video-card portrait">
+          <iframe src="https://www.youtube.com/embed/biMbmg67aZM" allowfullscreen></iframe>
           <div class="video-info">UGC</div>
         </div>
-        <div class="video-card portrait"><iframe src="https://www.youtube.com/embed/Eqx0fdQ47f0"
-            allowfullscreen></iframe>
-          <div class="video-info">UGC</div>
+        <div class="video-card portrait">
+          <iframe src="https://www.youtube.com/embed/H0OfYSqAzdw" allowfullscreen></iframe>
+          <div class="video-info">GYM EDIT</div>
         </div>
-        <div class="video-card landscape"><iframe src="https://www.youtube.com/embed/biMbmg67aZM"
-            allowfullscreen></iframe>
-          <div class="video-info">Gym Video</div>
+        <div class="video-card portrait">
+          <iframe src="https://www.youtube.com/embed/yOoZBo1rbV8" allowfullscreen></iframe>
+          <div class="video-info">DJI</div>
         </div>
-        <div class="video-card landscape"><iframe src="https://www.youtube.com/embed/AkIBZf1Cvns"
-            allowfullscreen></iframe>
-          <div class="video-info">Watch Video</div>
+        <!-- BOTTOM ROW: Landscape Videos -->
+        <div class="video-card landscape">
+          <iframe src="https://www.youtube.com/embed/jx2bNhABBhQ" allowfullscreen></iframe>
+          <div class="video-info">REPUBLIC DAY EDIT</div>
         </div>
-        <div class="video-card landscape"><iframe src="https://www.youtube.com/embed/EOoVCErJVNU"
-            allowfullscreen></iframe>
-          <div class="video-info">Car Video</div>
+        <div class="video-card landscape">
+          <iframe src="https://www.youtube.com/embed/FUHYCIQrm2s" allowfullscreen></iframe>
+          <div class="video-info">PROMOTIONAL AD</div>
+        </div>
+        <div class="video-card landscape">
+          <iframe src="https://www.youtube.com/embed/Okm4bjmYENE" allowfullscreen></iframe>
+          <div class="video-info">BGMI MONTAGE EDIT</div>
         </div>
       </div>
     </section>
