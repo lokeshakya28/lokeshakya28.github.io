@@ -1486,7 +1486,7 @@
       <div class="contact-card">
         <p>If you need video editing or social media design for your brand — feel free to reach out.</p>
         <div class="contact-buttons">
-          <a href="mailto:zxlokesh739@gmail.com" class="contact-btn">Email</a>
+          <a href="/cdn-cgi/l/email-protection#dea4a6b2b1b5bbadb6e9ede79eb9b3bfb7b2f0bdb1b3" class="contact-btn">Email</a>
           <a href="https://instagram.com/mr.lokesh_28" class="contact-btn" target="_blank">Personal Instagram</a>
           <a href="https://instagram.com/pixelsbylokesh" class="contact-btn" target="_blank">Design Instagram</a>
         </div>
@@ -1515,7 +1515,7 @@
     for (let i = 0; i < 60; i++) { particles.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, r: Math.random() * 1.4 + 0.6, dx: (Math.random() - 0.5) * 0.18, dy: (Math.random() - 0.5) * 0.18, opacity: Math.random() * 0.4 + 0.15 }); }
     function drawParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.closePath(); ctx.fillStyle = 'rgba(74,222,128,' + p.opacity + ')'; ctx.fill(); p.x += p.dx; p.y += p.dy; if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0; if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0; }); requestAnimationFrame(drawParticles); }
     drawParticles();
-    window.addEventListener('load', () => { setTimeout(() => { const l = document.getElementById('loader'); l.classList.add('hide'); setTimeout(() => { l.style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 650); }, 1800); });
+    document.addEventListener('DOMContentLoaded', () => { setTimeout(() => { const l = document.getElementById('loader'); l.classList.add('hide'); setTimeout(() => { l.style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 650); }, 1800); });
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => { let current = ''; sections.forEach(sec => { const top = window.scrollY, offset = sec.offsetTop - 200, height = sec.offsetHeight, id = sec.getAttribute('id'); if (top >= offset && top < offset + height) { current = id; } }); navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); } }); });
@@ -1567,4 +1567,10 @@
       document.getElementById('lb-img').src = images[currentIndex];
     }
     document.addEventListener('keydown', e => {
-      if (e.ke
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    });
+  </script>
+</body>
+</html>
